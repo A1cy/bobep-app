@@ -55,17 +55,18 @@
     />
   </head>
   <body id="bg">
-      <div id="loading-area2" class="loading-page-1">
+    <div id="loading-area2" class="loading-page-1">
       <div class="load-text">
         <span data-text="Б" class="text-load">Б</span>
         <span data-text="О" class="text-load">О</span>
         <span data-text="Б" class="text-load">Б</span>
         <span data-text="Ё" class="text-load">Ё</span>
         <span data-text="Р" class="text-load">Р</span>
-        <span data-text="" class="text-load"><img src="assets/images/loading.gif" alt="" /></span>
-        
+        <span data-text="" class="text-load"
+          ><img src="assets/images/loading.gif" alt=""
+        /></span>
       </div>
-    </div>  
+    </div>
 
     <div class="page-wraper">
       <!-- Header -->
@@ -1104,8 +1105,8 @@
                 <div class="col-xl-6 col-lg-7 col-md-7">
                   <div class="banner-content">
                     <h1 class="title wow fadeInUp" data-wow-delay="0.2s">
-                      The Number <span class="text-primary">#1</span> Choice
-                      Your Hunger Solution
+                    Номер <span class="text-primary">#1</span> Выбор для решения вашего голода
+
                     </h1>
                     <p class="wow fadeInUp" data-wow-delay="0.4s">
                       <br />Название <strong>"БОБЁР" 🦫</strong> возникло, когда
@@ -2144,7 +2145,7 @@
           </div>
         </section>
         <!-- Visit Restaurant -->
-        <section class="content-inner pb-10">
+        <!-- <section class="content-inner pb-10">
           <div class="container">
             <div class="section-head text-center">
               <h2 class="title">We Invite you to Visit Our Restaurant</h2>
@@ -2169,7 +2170,7 @@
               </div>
             </div>
           </div>
-        </section>
+        </section> -->
         <!-- Visit Restaurant -->
         <!-- booking Section -->
         <section
@@ -2179,50 +2180,24 @@
             background-attachment: fixed;
           "
         >
-          <div class="container">
+          <div class="container max-width-container">
             <div class="section-head text-center">
               <h2 class="title text-white wow flipInX" data-wow-delay="0.2s">
-                Reservation
+                Забронируй <span>Праздник</span>
               </h2>
             </div>
-            <form action="#">
+
+            <form
+              id="reservation-form"
+              action="https://app.us17.list-manage.com/subscribe/post-json?u=c7b1e1f62f6fb4ed6ed5b7427&id=84f5521818&c=?"
+              method="GET"
+              class="email-form"
+              target="_blank"
+              novalidate
+            >
               <div class="row">
                 <div
-                  class="col-lg-4 col-md-6 m-b30 m-sm-b50 wow fadeInUp"
-                  data-wow-delay="0.2s"
-                >
-                  <div class="input-group input-line">
-                    <div class="input-group-prepand">
-                      <i class="flaticon-user"></i>
-                    </div>
-                    <input
-                      name="dzName"
-                      required
-                      type="text"
-                      class="form-control"
-                      placeholder="Your Name"
-                    />
-                  </div>
-                </div>
-                <div
-                  class="col-lg-4 col-md-6 m-b30 m-sm-b50 wow fadeInUp"
-                  data-wow-delay="0.2s"
-                >
-                  <div class="input-group input-line">
-                    <div class="input-group-prepand">
-                      <i class="flaticon-phone-call"></i>
-                    </div>
-                    <input
-                      name="dzPhoneNumber"
-                      required
-                      type="text"
-                      class="form-control dz-number"
-                      placeholder="Phone Number"
-                    />
-                  </div>
-                </div>
-                <div
-                  class="col-lg-4 col-md-6 m-b30 m-sm-b50 wow fadeInUp"
+                  class="col-lg-4 col-md-6 form-group wow fadeInUp"
                   data-wow-delay="0.2s"
                 >
                   <div class="input-group input-line">
@@ -2230,34 +2205,56 @@
                       <i class="flaticon-email-1"></i>
                     </div>
                     <input
-                      name="dzEmail"
-                      required
-                      type="text"
+                      type="email"
+                      name="EMAIL"
                       class="form-control"
-                      placeholder="Your Email"
+                      id="email"
+                      placeholder="Ваша Почта"
+                      required
                     />
                   </div>
                 </div>
+
                 <div
-                  class="col-lg-4 col-md-6 m-b30 m-sm-b50 wow fadeInUp"
-                  data-wow-delay="0.4s"
+                  class="col-lg-4 col-md-6 form-group wow fadeInUp"
+                  data-wow-delay="0.2s"
                 >
                   <div class="input-group input-line">
                     <div class="input-group-prepand">
-                      <i class="flaticon-two-people"></i>
+                      <i class="flaticon-user"></i>
                     </div>
-                    <select class="form-select default-select">
-                      <option>Number Of People</option>
-                      <option>Member 1</option>
-                      <option>Member 2</option>
-                      <option>Member 3</option>
-                      <option>Member 4</option>
-                      <option>Member 5</option>
-                    </select>
+                    <input
+                      type="text"
+                      name="FNAME"
+                      class="form-control"
+                      id="name"
+                      placeholder="Ваше Имя"
+                      required
+                    />
                   </div>
                 </div>
+
                 <div
-                  class="col-lg-4 col-md-6 m-b30 m-sm-b50 wow fadeInUp"
+                  class="col-lg-4 col-md-6 form-group wow fadeInUp"
+                  data-wow-delay="0.2s"
+                >
+                  <div class="input-group input-line">
+                    <div class="input-group-prepand">
+                      <i class="flaticon-phone-call"></i>
+                    </div>
+                    <input
+                      type="text"
+                      name="PHONE"
+                      class="form-control"
+                      id="phone"
+                      placeholder="Ваш Телефон"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div
+                  class="col-lg-4 col-md-6 form-group wow fadeInUp"
                   data-wow-delay="0.4s"
                 >
                   <div class="input-group input-line">
@@ -2265,16 +2262,18 @@
                       <i class="flaticon-calendar-date"></i>
                     </div>
                     <input
-                      required
                       type="text"
+                      name="BIRTHDAY"
                       class="form-control"
-                      id="datePickerOnly"
-                      placeholder="Date"
+                      id="date"
+                      placeholder="Дата праздника (мм/дд)"
+                      required
                     />
                   </div>
                 </div>
+
                 <div
-                  class="col-lg-4 col-md-6 m-b30 m-sm-b50 wow fadeInUp"
+                  class="col-lg-4 col-md-6 form-group wow fadeInUp"
                   data-wow-delay="0.4s"
                 >
                   <div class="input-group input-line">
@@ -2282,28 +2281,72 @@
                       <i class="flaticon-clock"></i>
                     </div>
                     <input
-                      required
                       type="text"
+                      name="TIME"
                       class="form-control"
-                      id="timePickerOnly"
-                      placeholder="Time"
+                      id="time"
+                      placeholder="Время праздника"
+                      required
                     />
                   </div>
                 </div>
-                <div class="col-lg-12 col-md-12 text-center">
+
+                <div
+                  class="col-lg-4 col-md-6 form-group wow fadeInUp"
+                  data-wow-delay="0.4s"
+                >
+                  <div class="input-group input-line">
+                    <div class="input-group-prepand">
+                      <i class="flaticon-two-people"></i>
+                    </div>
+                    <input
+                      type="number"
+                      name="PEOPLE"
+                      class="form-control"
+                      id="people"
+                      placeholder="Количество человек"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div
+                  class="col-lg-12 form-group mt-3 wow fadeInUp"
+                  data-wow-delay="0.6s"
+                >
+                  <textarea
+                    class="form-control"
+                    name="MMERGE3"
+                    rows="5"
+                    placeholder="Ваше Сообщение"
+                  ></textarea>
+                </div>
+
+                <div class="col-lg-12 mb-3 wow fadeInUp" data-wow-delay="0.6s">
+                  <div class="loading">Загрузка</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">
+                    Ваш запрос на бронирование был отправлен. Мы перезвоним или
+                    отправим ответ на почту для деталей бронирования. Спасибо!
+                  </div>
+                </div>
+
+                <div
+                  class="col-lg-12 text-center wow fadeInUp"
+                  data-wow-delay="0.6s"
+                >
                   <button
                     type="submit"
-                    name="submit"
-                    value="submit"
                     class="btn btn-lg btn-white btn-hover-1"
                   >
-                    <span>Book a Table</span>
+                    Отправить Запрос
                   </button>
                 </div>
               </div>
             </form>
           </div>
         </section>
+
         <!-- Contact Section -->
 
         <!-- Map Iframe -->
@@ -2340,22 +2383,23 @@
         <div class="footer-top">
           <div class="container">
             <div class="row">
+              <!-- Contact Form Section -->
               <div
                 class="col-xl-5 col-lg-5 col-md-12 wow fadeInUp"
                 data-wow-delay="0.4s"
               >
                 <div class="dz-form-card bg-primary">
                   <div class="section-head">
-                    <h4 class="title m-0">Contact us</h4>
+                    <h4 class="title m-0">Свяжитесь с нами</h4>
                     <p class="m-t10">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
+                      Задайте вопрос или оставьте сообщение, и мы свяжемся с
+                      вами в ближайшее время.
                     </p>
                   </div>
                   <form
                     class="dzForm dezPlaceAni"
                     method="POST"
-                    action="https://swigo.dexignzone.com/xhtml/script/contact_smtp.php"
+                    action=""
                   >
                     <input
                       type="hidden"
@@ -2378,7 +2422,7 @@
                             required
                             type="text"
                             class="form-control"
-                            placeholder="Your Name"
+                            placeholder="Ваше Имя"
                           />
                         </div>
                       </div>
@@ -2387,9 +2431,9 @@
                           <input
                             name="dzEmail"
                             required
-                            type="text"
+                            type="email"
                             class="form-control"
-                            placeholder="Email Address"
+                            placeholder="Ваш Email"
                           />
                         </div>
                       </div>
@@ -2400,7 +2444,7 @@
                             required
                             type="text"
                             class="form-control"
-                            placeholder="Subject"
+                            placeholder="Тема"
                           />
                         </div>
                       </div>
@@ -2410,7 +2454,7 @@
                             name="dzMessage"
                             required
                             class="form-control"
-                            placeholder="Message"
+                            placeholder="Сообщение"
                           ></textarea>
                         </div>
                       </div>
@@ -2421,126 +2465,100 @@
                           value="submit"
                           class="btn btn-md btn-white btn-hover-1"
                         >
-                          <span>Send Message</span>
+                          <span>Отправить Сообщение</span>
                         </button>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
+
+              <!-- Contact Information in Russian with Font Awesome Icons -->
               <div
-                class="col-xl-3 col-lg-3 col-md-5 wow fadeInUp"
+                class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
                 data-wow-delay="0.5s"
               >
-                <div class="widget widget_getintuch">
-                  <h5 class="footer-title">Contact</h5>
-                  <ul>
-                    <li>
-                      <i class="flaticon-placeholder"></i>
-                      <p>
-                        1247/Plot No. 39, 15th Phase, Colony, Kkatpally,
-                        Hyderabad
-                      </p>
-                    </li>
-                    <li>
-                      <i class="flaticon-telephone"></i>
-                      <p>
-                        +91 987-654-3210<br />
-                        +91 123-456-7890
-                      </p>
-                    </li>
-                    <li>
-                      <i class="flaticon-email-1"></i>
-                      <p>
-                        info@example.com<br />
-                        info@example.com
-                      </p>
-                    </li>
-                  </ul>
-                </div>
+                <h5 class="footer-title">Локация</h5>
+                <i class="fas fa-map-marker-alt"></i>
+                <!-- Font Awesome Icon -->
+                <p>
+                  Привокзальная улица 21 <br />с.Топчиха Алтайского края, Россия
+                </p>
               </div>
+
               <div
-                class="col-xl-2 col-lg-2 col-md-3 col-6 wow fadeInUp"
+                class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
                 data-wow-delay="0.6s"
               >
-                <div class="widget widget_services">
-                  <h5 class="footer-title">Our Links</h5>
-                  <ul>
-                    <li>
-                      <a href="index.html"><span>Home</span></a>
-                    </li>
-                    <li>
-                      <a href="about-us.html"><span>About Us</span></a>
-                    </li>
-                    <li>
-                      <a href="services.html"><span>Services</span></a>
-                    </li>
-                    <li>
-                      <a href="team.html"><span>Team</span></a>
-                    </li>
-                    <li>
-                      <a href="blog-standard.html"><span>Blog</span></a>
-                    </li>
-                  </ul>
-                </div>
+                <h5 class="footer-title">Почта</h5>
+                <i class="fas fa-envelope"></i>
+                <!-- Font Awesome Icon -->
+                <p>cafe.bar.bober@gmail.com</p>
               </div>
+
               <div
-                class="col-xl-2 col-lg-2 col-md-3 col-6 wow fadeInUp"
+                class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
                 data-wow-delay="0.7s"
               >
-                <div class="widget widget_services">
-                  <h5 class="footer-title">Help Center</h5>
-                  <ul>
-                    <li>
-                      <a href="faq.html"><span>FAQ</span></a>
-                    </li>
-                    <li>
-                      <a href="shop-style-1.html"><span>Shop</span></a>
-                    </li>
-                    <li>
-                      <a href="shop-style-2.html"
-                        ><span>Category Filter</span></a
-                      >
-                    </li>
-                    <li>
-                      <a href="testimonial.html"><span>Testimonials</span></a>
-                    </li>
-                    <li>
-                      <a href="contact-us.html"><span>Contact Us</span></a>
-                    </li>
-                  </ul>
+                <h5 class="footer-title">Телефон</h5>
+                <i class="fas fa-phone"></i>
+                <!-- Font Awesome Icon -->
+                <p>Заказ +79095026005</p>
+                <p>Оплата +79030739235</p>
+              </div>
+
+              <div
+                class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
+                data-wow-delay="0.8s"
+              >
+                <h5 class="footer-title">Режим работы</h5>
+                <i class="fas fa-clock"></i>
+                <!-- Font Awesome Icon -->
+                <p>Пн-пт: с 9:00 - 21:00</p>
+                <p>Сб-вс: с 10:00 - 21:00</p>
+              </div>
+
+              <!-- Social Links -->
+              <div class="col-lg-12 mt-5 text-center">
+                <h3>БОБЁР</h3>
+                <div class="social-links">
+                  <a href="https://t.me/CafeBarBober" class="telegram"
+                    ><i class="fab fa-telegram-plane"></i
+                  ></a>
+                  <a
+                    href="https://chat.whatsapp.com/JD5tm89FApd5pwmajTwi62"
+                    class="whatsapp"
+                    ><i class="fab fa-whatsapp"></i
+                  ></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <!-- Footer Bottom Part -->
         <div class="container">
           <div class="footer-bottom">
             <div class="row">
               <div class="col-xl-6 col-md-6 text-md-start">
-                <p>Copyright 2023 All rights reserved.</p>
+                <p>Copyright 2024 Все права защищены "БОБЁР".</p>
               </div>
               <div class="col-xl-6 col-md-6 text-md-end">
-                <span class="copyright-text"
-                  >Crafted With <span class="heart"></span> by
-                  <a href="https://a1xai.com/" target="_blank">A1</a></span
-                >
+                <span class="copyright-text">
+                  Crafted With <span class="fas fa-heart"></span> by
+                  <a href="https://a1xai.com/" target="_blank">A1</a>
+                </span>
               </div>
             </div>
           </div>
         </div>
-        <img
-          class="bg1 dz-move"
-          src="assets/images/background/pic5.png"
-          alt="/"
-        />
-        <img
-          class="bg2 dz-move"
-          src="assets/images/background/pic6.png"
-          alt="/"
-        />
       </footer>
+
+      <!-- Add the Font Awesome CDN -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      />
 
       <!-- Footer -->
       <div class="scroltop-progress scroltop-primary">
