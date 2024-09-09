@@ -4,7 +4,7 @@
     <!-- Title -->
     <title>БОБЁР Кафе-Бар 🔆</title>
 
-    <!-- Database Password: Bobep@Kris$ -->
+    <!-- Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="A1" />
@@ -44,8 +44,6 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="assets/vendor/rangeslider/rangeslider.css" />
     <link rel="stylesheet" href="assets/vendor/switcher/switcher.css" />
-    <link rel="stylesheet" href="assets/vendor/nouislider/nouislider.min.css" />
-
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- Google Fonts -->
@@ -326,7 +324,6 @@
               </button>
               <h6 class="login-title"><span>OR</span></h6>
             </div>
-
             <div class="form-group m-b15">
               <label class="form-label">Email*</label>
               <div class="input-group">
@@ -731,151 +728,366 @@
             </div>
           </div>
         </div>
-        <h1>User Authentication with Supabase</h1>
 
-        <!-- Sign-up form -->
-        <div>
-          <h2>Sign Up</h2>
-          <form id="signup-form">
-            <input
-              type="email"
-              id="signup-email"
-              placeholder="Enter your email"
-              required
-            />
-            <input
-              type="password"
-              id="signup-password"
-              placeholder="Enter your password"
-              required
-            />
-            <button type="submit">Sign Up</button>
-          </form>
-        </div>
-
-        <!-- Sign-in form -->
-        <div>
-          <h2>Sign In</h2>
-          <form id="signin-form">
-            <input
-              type="email"
-              id="signin-email"
-              placeholder="Enter your email"
-              required
-            />
-            <input
-              type="password"
-              id="signin-password"
-              placeholder="Enter your password"
-              required
-            />
-            <button type="submit">Sign In</button>
-          </form>
-        </div>
-
-        <p id="status-message"></p>
-
-        <!-- Sign-out button -->
-        <button id="signout-btn" style="display: none">Sign Out</button>
-
-        <!-- Supabase JS SDK -->
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
-
-        <script>
-          document.addEventListener("DOMContentLoaded", async () => {
-            // Initialize Supabase client with the provided URL and anon key
-            const SUPABASE_URL = "https://qifktfxzhigtidwrnafw.supabase.co";
-            const SUPABASE_ANON_KEY =
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpZmt0Znh6aGlndGlkd3JuYWZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4NzU1NDMsImV4cCI6MjA0MTQ1MTU0M30.dXMdlgC1lQf9kyqSEsI5VNcryzqFHVvAsvBdo_itqVo";
-
-            // Create the Supabase client
-            const supabase = window.supabase.createClient(
-              SUPABASE_URL,
-              SUPABASE_ANON_KEY
-            );
-
-            // Handle sign-up form submission
-            document
-              .getElementById("signup-form")
-              .addEventListener("submit", async (e) => {
-                e.preventDefault();
-                const email = document.getElementById("signup-email").value;
-                const password =
-                  document.getElementById("signup-password").value;
-
-                // Sign up the user
-                const { data, error } = await supabase.auth.signUp({
-                  email,
-                  password,
-                });
-
-                if (error) {
-                  document.getElementById(
-                    "status-message"
-                  ).innerText = `Sign-up error: ${error.message}`;
-                } else {
-                  document.getElementById(
-                    "status-message"
-                  ).innerText = `Sign-up successful! Check your email for verification.`;
-                }
-              });
-
-            // Handle sign-in form submission
-            document
-              .getElementById("signin-form")
-              .addEventListener("submit", async (e) => {
-                e.preventDefault();
-                const email = document.getElementById("signin-email").value;
-                const password =
-                  document.getElementById("signin-password").value;
-
-                // Sign in the user
-                const { data, error } = await supabase.auth.signInWithPassword({
-                  email,
-                  password,
-                });
-
-                if (error) {
-                  document.getElementById(
-                    "status-message"
-                  ).innerText = `Sign-in error: ${error.message}`;
-                } else {
-                  document.getElementById(
-                    "status-message"
-                  ).innerText = `Sign-in successful! Welcome back, ${data.user.email}`;
-                  document.getElementById("signout-btn").style.display =
-                    "block";
-                }
-              });
-
-            // Handle sign-out button
-            document
-              .getElementById("signout-btn")
-              .addEventListener("click", async () => {
-                const { error } = await supabase.auth.signOut();
-
-                if (error) {
-                  document.getElementById(
-                    "status-message"
-                  ).innerText = `Sign-out error: ${error.message}`;
-                } else {
-                  document.getElementById(
-                    "status-message"
-                  ).innerText = `Sign-out successful!`;
-                  document.getElementById("signout-btn").style.display = "none";
-                }
-              });
-
-            // Update the UI based on the user's session
-            const session = await supabase.auth.getSession();
-            if (session.data.session) {
-              document.getElementById(
-                "status-message"
-              ).innerText = `Welcome back, ${session.data.session.user.email}`;
-              document.getElementById("signout-btn").style.display = "block";
-            }
-          });
-        </script>
+        <!-- Advertisement Box -->
+        <!-- <section class="content-inner overflow-hidden pb-0">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-lg-4 col-md-12 m-b30 wow fadeInUp"
+                data-wow-delay="0.2s"
+              >
+                <div
+                  class="adv-box style-1"
+                  style="
+                    background-image: url('assets/images/adv/pic2.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                  "
+                >
+                  <div class="adv-content">
+                    <span class="special">FRIDAY SPECIAL</span>
+                    <h4 class="title">TASTY BURGER</h4>
+                  </div>
+                  <div class="adv-media">
+                    <img
+                      class="main-media"
+                      src="assets/images/adv/pic1.png"
+                      alt="/"
+                    />
+                    <div class="item-media offer-label">
+                      <img src="assets/images/adv/label.png" alt="/" />
+                      <span class="">50% OFF</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="row">
+                  <div
+                    class="col-lg-6 col-md-6 m-b30 wow fadeInUp"
+                    data-wow-delay="0.4s"
+                  >
+                    <div class="adv-box style-2">
+                      <div class="adv-media">
+                        <img src="assets/images/adv/pic3.png" alt="/" />
+                      </div>
+                      <div class="adv-content">
+                        <span class="special text-white">TODAY SPECIAL</span>
+                        <h4 class="title text-white">Nodels</h4>
+                        <span class="price">60% OFF</span>
+                        <a
+                          href="javascript(void)"
+                          class="btn btn-white btn-hover-3"
+                          ><span class="btn-text" data-text="Add To Cart"
+                            >Add To Cart</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-6 col-md-6 m-b30 wow fadeInUp"
+                    data-wow-delay="0.6s"
+                  >
+                    <div
+                      class="adv-box style-3"
+                      style="
+                        background-image: url('assets/images/background/pic15.png');
+                        background-size: cover;
+                        background-position: center;
+                      "
+                    >
+                      <div class="adv-content">
+                        <span class="special text-white">MUSHROOM</span>
+                        <h4 class="title">BURGER</h4>
+                        <a
+                          href="javascript(void)"
+                          class="btn btn-white btn-hover-3"
+                          ><span class="btn-text" data-text="Add To Cart"
+                            >Add To Cart</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.8s">
+                    <div
+                      class="adv-box style-4"
+                      style="
+                        background-image: url('assets/images/background/pic16.png');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                      "
+                    >
+                      <div class="adv-media">
+                        <img src="assets/images/adv/pic4.png" alt="/" />
+                      </div>
+                      <div class="adv-content">
+                        <span class="special text-white"
+                          >FOR LIMITED TIME ONLY</span
+                        >
+                        <h4 class="price">35% Offer</h4>
+                      </div>
+                      <a
+                        href="javascript(void)"
+                        class="btn btn-white btn-hover-3"
+                        ><span class="btn-text" data-text="Add To Cart"
+                          >Add To Cart</span
+                        ></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> -->
+        <!-- Advertisement Box -->
+        <!-- Image Box-3  -->
+        <!-- <section class="content-inner-1 section-wrapper-3 overflow-hidden">
+          <div class="container">
+            <div class="section-head text-center">
+              <h2 class="title wow flipInX" data-wow-delay="0.2s">
+                Today's Menu
+              </h2>
+            </div>
+            <div class="row inner-section-wrapper">
+              <div
+                class="col-lg-3 col-md-6 col-sm-6 m-b30 wow fadeInUp"
+                data-wow-delay="0.2s"
+              >
+                <div class="dz-img-box style-3 box-hover">
+                  <div class="dz-media">
+                    <img src="assets/images/gallery/grid2/pic2.jpg" alt="/" />
+                  </div>
+                  <span class="dz-tag">TOP SELLER</span>
+                  <div class="dz-content">
+                    <h5 class="dz-title">
+                      <a href="our-menu-1.html">Pasta</a>
+                    </h5>
+                    <p>Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                  </div>
+                  <div class="dz-hover-content">
+                    <div class="dz-info">
+                      <h5 class="dz-title mb-0">
+                        <a href="our-menu-1.html">Pasta</a>
+                      </h5>
+                      <span class="dz-price">$35.00</span>
+                    </div>
+                    <a
+                      href="shop-cart.html"
+                      class="btn btn-cart btn-white text-primary btn-square"
+                      ><i class="flaticon-shopping-cart"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-lg-3 col-md-6 col-sm-6 m-b30 wow fadeInUp"
+                data-wow-delay="0.4s"
+              >
+                <div class="dz-img-box style-3 box-hover">
+                  <div class="dz-media">
+                    <img src="assets/images/gallery/grid2/pic5.jpg" alt="/" />
+                  </div>
+                  <span class="dz-tag">TOP SELLER</span>
+                  <div class="dz-content">
+                    <h5 class="dz-title">
+                      <a href="our-menu-1.html">Oreo Shake</a>
+                    </h5>
+                    <p>Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                  </div>
+                  <div class="dz-hover-content">
+                    <div class="dz-info">
+                      <h5 class="dz-title mb-0">
+                        <a href="our-menu-1.html">Shake</a>
+                      </h5>
+                      <span class="dz-price">$55.00</span>
+                    </div>
+                    <a
+                      href="shop-cart.html"
+                      class="btn btn-cart btn-white text-primary btn-square"
+                      ><i class="flaticon-shopping-cart"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-lg-3 col-md-6 col-sm-6 m-b30 wow fadeInUp"
+                data-wow-delay="0.6s"
+              >
+                <div class="dz-img-box style-3 box-hover">
+                  <div class="dz-media">
+                    <img src="assets/images/gallery/grid2/pic4.jpg" alt="/" />
+                  </div>
+                  <span class="dz-tag">TOP SELLER</span>
+                  <div class="dz-content">
+                    <h5 class="dz-title">
+                      <a href="our-menu-1.html">Dal Fry</a>
+                    </h5>
+                    <p>Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                  </div>
+                  <div class="dz-hover-content">
+                    <div class="dz-info">
+                      <h5 class="dz-title mb-0">
+                        <a href="our-menu-1.html">Dal</a>
+                      </h5>
+                      <span class="dz-price">$25.00</span>
+                    </div>
+                    <a
+                      href="shop-cart.html"
+                      class="btn btn-cart btn-white text-primary btn-square"
+                      ><i class="flaticon-shopping-cart"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-lg-3 col-md-6 col-sm-6 m-b30 wow fadeInUp"
+                data-wow-delay="0.8s"
+              >
+                <div class="dz-img-box style-3 box-hover">
+                  <div class="dz-media">
+                    <img src="assets/images/gallery/grid2/pic6.jpg" alt="/" />
+                  </div>
+                  <span class="dz-tag">TOP SELLER</span>
+                  <div class="dz-content">
+                    <h5 class="dz-title">
+                      <a href="our-menu-1.html">Pizza</a>
+                    </h5>
+                    <p>Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                  </div>
+                  <div class="dz-hover-content">
+                    <div class="dz-info">
+                      <h5 class="dz-title mb-0">
+                        <a href="our-menu-1.html">Pizza</a>
+                      </h5>
+                      <span class="dz-price">$90.00</span>
+                    </div>
+                    <a
+                      href="shop-cart.html"
+                      class="btn btn-cart btn-white text-primary btn-square"
+                      ><i class="flaticon-shopping-cart"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 text-center m-t10">
+                <a
+                  href="our-menu-2.html"
+                  class="btn btn-md btn-primary btn-hover-1"
+                  ><span>See All Dishes</span></a
+                >
+              </div>
+            </div>
+            <div class="section-head text-center">
+              <h2 class="title wow flipInX" data-wow-delay="0.2s">
+                Quality Services
+              </h2>
+            </div>
+    
+            <div class="icon-wrapper1">
+              <div class="row wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div
+                    class="icon-bx-wraper style-1 box-hover center"
+                    style="
+                      background-image: url(assets/images/gallery/grid/pic1.jpg);
+                    "
+                  >
+                    <div class="inner-content">
+                      <div class="icon-bx m-b25">
+                        <span class="icon-cell icon-md">
+                          <i class="flaticon-restaurant"></i>
+                        </span>
+                      </div>
+                      <div class="icon-content">
+                        <h5 class="dz-title">Restaurant</h5>
+                        <p>Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div
+                    class="icon-bx-wraper style-1 box-hover center"
+                    style="
+                      background-image: url(assets/images/gallery/grid/pic2.jpg);
+                    "
+                  >
+                    <div class="inner-content">
+                      <div class="icon-bx m-b25">
+                        <span class="icon-cell icon-md">
+                          <i class="flaticon-martini"></i>
+                        </span>
+                      </div>
+                      <div class="icon-content">
+                        <h5 class="dz-title">Bar</h5>
+                        <p>Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div
+                    class="icon-bx-wraper style-1 box-hover center"
+                    style="
+                      background-image: url(assets/images/gallery/grid/pic3.jpg);
+                    "
+                  >
+                    <div class="inner-content">
+                      <div class="icon-bx m-b25">
+                        <span class="icon-cell icon-md">
+                          <i class="flaticon-coffee-cup"></i>
+                        </span>
+                      </div>
+                      <div class="icon-content">
+                        <h5 class="dz-title">Cafe</h5>
+                        <p>Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div
+                    class="icon-bx-wraper style-1 box-hover center"
+                    style="
+                      background-image: url(assets/images/gallery/grid/pic4.jpg);
+                    "
+                  >
+                    <div class="inner-content">
+                      <div class="m-b25">
+                        <span class="icon-cell icon-md">
+                          <i class="flaticon-cake"></i>
+                        </span>
+                      </div>
+                      <div class="icon-content">
+                        <h5 class="dz-title">Dessert</h5>
+                        <p>Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+       
+          </div>
+          <img
+            class="bg1 dz-parallax"
+            data-parallax-speed="0.05"
+            src="assets/images/background/pic3.png"
+            alt="/"
+          />
+          <img
+            class="bg2 dz-parallax"
+            data-parallax-speed="0.05"
+            src="assets/images/background/pic4.png"
+            alt="/"
+          />
+        </section> -->
+        <!-- Image Box-3 -->
 
         <!-- Service Section -->
         <section
@@ -990,6 +1202,479 @@
           </div>
         </section>
         <!-- End Service Section -->
+
+        <!--Banner-->
+        <!-- Image Box-1  -->
+        <!-- <section class="content-inner-1 bg-white overflow-hidden pt-sm-0">
+          <div class="container">
+            <div class="section-head text-center">
+              <h2 class="title wow flipInX" data-wow-delay="0.2s">
+                From Our Menu
+              </h2>
+            </div>
+            <div class="swiper-btn-lr">
+              <div class="swiper portfolio-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div
+                      class="dz-img-box style-1 wow fadeInUp"
+                      data-wow-delay="0.4s"
+                    >
+                      <div class="dz-media">
+                        <img
+                          src="assets/images/gallery/grid2/pic1.jpg"
+                          alt="/"
+                        />
+                      </div>
+                      <span class="dz-tag">TOP SELLER</span>
+                      <div class="dz-content">
+                        <div class="dz-info">
+                          <h5 class="dz-title mb-0">
+                            <a href="our-menu-1.html">Burger</a>
+                          </h5>
+                          <span class="dz-price">$20.00</span>
+                        </div>
+                        <a
+                          href="shop-cart.html"
+                          class="btn btn-cart btn-white text-primary btn-square"
+                          ><i class="flaticon-shopping-cart"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div
+                      class="dz-img-box style-1 wow fadeInUp"
+                      data-wow-delay="0.6s"
+                    >
+                      <div class="dz-media">
+                        <img
+                          src="assets/images/gallery/grid2/pic2.jpg"
+                          alt="/"
+                        />
+                      </div>
+                      <span class="dz-tag">TOP SELLER</span>
+                      <div class="dz-content">
+                        <div class="dz-info">
+                          <h5 class="dz-title mb-0">
+                            <a href="our-menu-1.html">Pasta</a>
+                          </h5>
+                          <span class="dz-price">$10.00</span>
+                        </div>
+                        <a
+                          href="shop-cart.html"
+                          class="btn btn-cart btn-white text-primary btn-square"
+                          ><i class="flaticon-shopping-cart"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div
+                      class="dz-img-box style-1 wow fadeInUp"
+                      data-wow-delay="0.8s"
+                    >
+                      <div class="dz-media">
+                        <img
+                          src="assets/images/gallery/grid2/pic3.jpg"
+                          alt="/"
+                        />
+                      </div>
+                      <span class="dz-tag">TOP SELLER</span>
+                      <div class="dz-content">
+                        <div class="dz-info">
+                          <h5 class="dz-title mb-0">
+                            <a href="our-menu-1.html">Tandoor</a>
+                          </h5>
+                          <span class="dz-price">$15.00</span>
+                        </div>
+                        <a
+                          href="shop-cart.html"
+                          class="btn btn-cart btn-white text-primary btn-square"
+                          ><i class="flaticon-shopping-cart"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div
+                      class="dz-img-box style-1 wow fadeInUp"
+                      data-wow-delay="0.10s"
+                    >
+                      <div class="dz-media">
+                        <img
+                          src="assets/images/gallery/grid2/pic4.jpg"
+                          alt="/"
+                        />
+                      </div>
+                      <span class="dz-tag">TOP SELLER</span>
+                      <div class="dz-content">
+                        <div class="dz-info">
+                          <h5 class="dz-title mb-0">
+                            <a href="our-menu-1.html">Dal Fry</a>
+                          </h5>
+                          <span class="dz-price">$65.00</span>
+                        </div>
+                        <a
+                          href="shop-cart.html"
+                          class="btn btn-cart btn-white text-primary btn-square"
+                          ><i class="flaticon-shopping-cart"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div
+                      class="dz-img-box style-1 wow fadeInUp"
+                      data-wow-delay="0.4s"
+                    >
+                      <div class="dz-media">
+                        <img
+                          src="assets/images/gallery/grid2/pic1.jpg"
+                          alt="/"
+                        />
+                      </div>
+                      <span class="dz-tag">TOP SELLER</span>
+                      <div class="dz-content">
+                        <div class="dz-info">
+                          <h5 class="dz-title mb-0">
+                            <a href="our-menu-1.html">Burger</a>
+                          </h5>
+                          <span class="dz-price">$20.00</span>
+                        </div>
+                        <a
+                          href="shop-cart.html"
+                          class="btn btn-cart btn-white text-primary btn-square"
+                          ><i class="flaticon-shopping-cart"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div
+                      class="dz-img-box style-1 wow fadeInUp"
+                      data-wow-delay="0.6s"
+                    >
+                      <div class="dz-media">
+                        <img
+                          src="assets/images/gallery/grid2/pic2.jpg"
+                          alt="/"
+                        />
+                      </div>
+                      <span class="dz-tag">TOP SELLER</span>
+                      <div class="dz-content">
+                        <div class="dz-info">
+                          <h5 class="dz-title mb-0">
+                            <a href="our-menu-1.html">Pasta</a>
+                          </h5>
+                          <span class="dz-price">$10.00</span>
+                        </div>
+                        <a
+                          href="shop-cart.html"
+                          class="btn btn-cart btn-white text-primary btn-square"
+                          ><i class="flaticon-shopping-cart"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div
+                      class="dz-img-box style-1 wow fadeInUp"
+                      data-wow-delay="0.8s"
+                    >
+                      <div class="dz-media">
+                        <img
+                          src="assets/images/gallery/grid2/pic3.jpg"
+                          alt="/"
+                        />
+                      </div>
+                      <span class="dz-tag">TOP SELLER</span>
+                      <div class="dz-content">
+                        <div class="dz-info">
+                          <h5 class="dz-title mb-0">
+                            <a href="our-menu-1.html">Tandoor</a>
+                          </h5>
+                          <span class="dz-price">$15.00</span>
+                        </div>
+                        <a
+                          href="shop-cart.html"
+                          class="btn btn-cart btn-white text-primary btn-square"
+                          ><i class="flaticon-shopping-cart"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div
+                      class="dz-img-box style-1 wow fadeInUp"
+                      data-wow-delay="0.10s"
+                    >
+                      <div class="dz-media">
+                        <img
+                          src="assets/images/gallery/grid2/pic4.jpg"
+                          alt="/"
+                        />
+                      </div>
+                      <span class="dz-tag">TOP SELLER</span>
+                      <div class="dz-content">
+                        <div class="dz-info">
+                          <h5 class="dz-title mb-0">
+                            <a href="our-menu-1.html">Dal Fry</a>
+                          </h5>
+                          <span class="dz-price">$65.00</span>
+                        </div>
+                        <a
+                          href="shop-cart.html"
+                          class="btn btn-cart btn-white text-primary btn-square"
+                          ><i class="flaticon-shopping-cart"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pagination mt-xl-0 m-t40">
+                <div class="img-button-prev btn-prev-long">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <div class="img-button-next btn-next-long">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> -->
+        <!-- Image Box-1 -->
+
+        <!-- Browser Our Menu -->
+        <!-- <section class="content-inner-1 overflow-hidden pt-0">
+          <div class="container">
+            <div class="section-head menu-align">
+              <h2
+                class="title mb-0 wow flipInX"
+                data-wow-delay="0.2s"
+                data-wow-delay="2s"
+              >
+                Browse Our Menu
+              </h2>
+              <div class="pagination-align wow fadeInUp" data-wow-delay="0.4s">
+                <div class="menu-button-prev1 btn-prev rounded-xl btn-hover-2">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <div class="menu-button-next1 btn-next rounded-xl btn-hover-2">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="swiper menu-swiper swiper-visible swiper-item-4">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div
+                    class="dz-img-box style-4 box-hover wow fadeInUp"
+                    data-wow-delay="0.4s"
+                  >
+                    <div class="menu-detail">
+                      <div class="dz-media">
+                        <img src="assets/images/menu-small/pic1.png" alt="/" />
+                      </div>
+                      <div class="dz-content">
+                        <h6 class="title">
+                          <a href="javascript(void)">Burger</a>
+                        </h6>
+                        <p>Delicious and Spicy</p>
+                      </div>
+                    </div>
+                    <div class="menu-footer">
+                      <span>Regular Price</span>
+                      <span class="price">$10.00</span>
+                    </div>
+                    <a class="detail-btn" href="javascript(void)"
+                      ><i class="fa-solid fa-plus"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="dz-img-box style-4 box-hover wow fadeInUp"
+                    data-wow-delay="0.4s"
+                  >
+                    <div class="menu-detail">
+                      <div class="dz-media">
+                        <img src="assets/images/menu-small/pic2.png" alt="/" />
+                      </div>
+                      <div class="dz-content">
+                        <h6 class="title">
+                          <a href="javascript(void)">Hot Rice</a>
+                        </h6>
+                        <p>Delicious and Spicy</p>
+                      </div>
+                    </div>
+                    <div class="menu-footer">
+                      <span>Regular Price</span>
+                      <span class="price">$15.00</span>
+                    </div>
+                    <a class="detail-btn" href="javascript(void)"
+                      ><i class="fa-solid fa-plus"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="dz-img-box style-4 box-hover wow fadeInUp"
+                    data-wow-delay="0.6s"
+                  >
+                    <div class="menu-detail">
+                      <div class="dz-media">
+                        <img src="assets/images/menu-small/pic3.png" alt="/" />
+                      </div>
+                      <div class="dz-content">
+                        <h6 class="title">
+                          <a href="javascript(void)">Momos</a>
+                        </h6>
+                        <p>Delicious and Spicy</p>
+                      </div>
+                    </div>
+                    <div class="menu-footer">
+                      <span>Regular Price</span>
+                      <span class="price">$25.00</span>
+                    </div>
+                    <a class="detail-btn" href="javascript(void)"
+                      ><i class="fa-solid fa-plus"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="dz-img-box style-4 box-hover wow fadeInUp"
+                    data-wow-delay="0.8s"
+                  >
+                    <div class="menu-detail">
+                      <div class="dz-media">
+                        <img src="assets/images/menu-small/pic4.png" alt="/" />
+                      </div>
+                      <div class="dz-content">
+                        <h6 class="title">
+                          <a href="javascript(void)">Pasta</a>
+                        </h6>
+                        <p>Delicious and Spicy</p>
+                      </div>
+                    </div>
+                    <div class="menu-footer">
+                      <span>Regular Price</span>
+                      <span class="price">$45.00</span>
+                    </div>
+                    <a class="detail-btn" href="javascript(void)"
+                      ><i class="fa-solid fa-plus"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="dz-img-box style-4 box-hover wow fadeInUp"
+                    data-wow-delay="0.10s"
+                  >
+                    <div class="menu-detail">
+                      <div class="dz-media">
+                        <img src="assets/images/menu-small/pic5.png" alt="/" />
+                      </div>
+                      <div class="dz-content">
+                        <h6 class="title">
+                          <a href="javascript(void)">Panner</a>
+                        </h6>
+                        <p>Delicious and Spicy</p>
+                      </div>
+                    </div>
+                    <div class="menu-footer">
+                      <span>Regular Price</span>
+                      <span class="price">$20.00</span>
+                    </div>
+                    <a class="detail-btn" href="javascript(void)"
+                      ><i class="fa-solid fa-plus"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="dz-img-box style-4 box-hover wow fadeInUp"
+                    data-wow-delay="0.12s"
+                  >
+                    <div class="menu-detail">
+                      <div class="dz-media">
+                        <img src="assets/images/menu-small/pic6.png" alt="/" />
+                      </div>
+                      <div class="dz-content">
+                        <h6 class="title">
+                          <a href="javascript(void)">Soya Rice</a>
+                        </h6>
+                        <p>Delicious and Spicy</p>
+                      </div>
+                    </div>
+                    <div class="menu-footer">
+                      <span>Regular Price</span>
+                      <span class="price">$90.00</span>
+                    </div>
+                    <a class="detail-btn" href="javascript(void)"
+                      ><i class="fa-solid fa-plus"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="dz-img-box style-4 box-hover wow fadeInUp"
+                    data-wow-delay="0.4s"
+                  >
+                    <div class="menu-detail">
+                      <div class="dz-media">
+                        <img src="assets/images/menu-small/pic1.png" alt="/" />
+                      </div>
+                      <div class="dz-content">
+                        <h6 class="title">
+                          <a href="javascript(void)">Burger</a>
+                        </h6>
+                        <p>Delicious and Spicy</p>
+                      </div>
+                    </div>
+                    <div class="menu-footer">
+                      <span>Regular Price</span>
+                      <span class="price">$10.00</span>
+                    </div>
+                    <a class="detail-btn" href="javascript(void)"
+                      ><i class="fa-solid fa-plus"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="dz-img-box style-4 box-hover wow fadeInUp"
+                    data-wow-delay="0.4s"
+                  >
+                    <div class="menu-detail">
+                      <div class="dz-media">
+                        <img src="assets/images/menu-small/pic2.png" alt="/" />
+                      </div>
+                      <div class="dz-content">
+                        <h6 class="title">
+                          <a href="javascript(void)">Hot Rice</a>
+                        </h6>
+                        <p>Delicious and Spicy</p>
+                      </div>
+                    </div>
+                    <div class="menu-footer">
+                      <span>Regular Price</span>
+                      <span class="price">$15.00</span>
+                    </div>
+                    <a class="detail-btn" href="javascript(void)"
+                      ><i class="fa-solid fa-plus"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> -->
+        <!-- Browser Our Menu -->
 
         <section class="content-inner-1">
           <div class="container">
@@ -1459,7 +2144,35 @@
             </div>
           </div>
         </section>
-
+        <!-- Visit Restaurant -->
+        <!-- <section class="content-inner pb-10">
+          <div class="container">
+            <div class="section-head text-center">
+              <h2 class="title">We Invite you to Visit Our Restaurant</h2>
+              <p class="about-p">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="about-media dz-media rounded-md">
+                  <img src="assets/images/background/pic11.jpg" alt="/" />
+                  <a
+                    class="video video-btn popup-youtube"
+                    href="https://www.youtube.com/watch?v=XJb1G9iRoL4"
+                  >
+                    <i class="fa-solid fa-play"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> -->
+        <!-- Visit Restaurant -->
+        <!-- booking Section -->
         <section
           class="content-inner-1 section-wrapper-1 bg-parallax"
           style="
@@ -1670,6 +2383,92 @@
         <div class="footer-top">
           <div class="container">
             <div class="row">
+              <!-- Contact Form Section -->
+              <div
+                class="col-xl-5 col-lg-5 col-md-12 wow fadeInUp"
+                data-wow-delay="0.4s"
+              >
+                <div class="dz-form-card bg-primary">
+                  <div class="section-head">
+                    <h4 class="title m-0">Свяжитесь с нами</h4>
+                    <p class="m-t10">
+                      Задайте вопрос или оставьте сообщение, и мы свяжемся с
+                      вами в ближайшее время.
+                    </p>
+                  </div>
+                  <form class="dzForm dezPlaceAni" method="POST" action="">
+                    <input
+                      type="hidden"
+                      class="form-control"
+                      name="dzToDo"
+                      value="Contact"
+                    />
+                    <input
+                      type="hidden"
+                      class="form-control"
+                      name="reCaptchaEnable"
+                      value="0"
+                    />
+                    <div class="dzFormMsg"></div>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12">
+                        <div class="input-group input-line">
+                          <input
+                            name="dzName"
+                            required
+                            type="text"
+                            class="form-control"
+                            placeholder="Ваше Имя"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12">
+                        <div class="input-group input-line">
+                          <input
+                            name="dzEmail"
+                            required
+                            type="email"
+                            class="form-control"
+                            placeholder="Ваш Email"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12">
+                        <div class="input-group input-line">
+                          <input
+                            name="dzOther[Subject]"
+                            required
+                            type="text"
+                            class="form-control"
+                            placeholder="Тема"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="input-group input-line">
+                          <textarea
+                            name="dzMessage"
+                            required
+                            class="form-control"
+                            placeholder="Сообщение"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <button
+                          type="submit"
+                          name="submit"
+                          value="submit"
+                          class="btn btn-md btn-white btn-hover-1"
+                        >
+                          <span>Отправить Сообщение</span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
               <!-- Contact Information in Russian with Font Awesome Icons -->
               <div
                 class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
@@ -1802,8 +2601,8 @@
     <!-- DZNAV INIT -->
     <script src="assets/vendor/rangeslider/rangeslider.js"></script>
     <!-- CUSTOM JS -->
-    <!-- TOUCHSPIN -->
-    <script src="assets/vendor/nouislider/nouislider.min.js"></script>
+
+    <!-- <script src="index.js" type="module"></script> -->
 
     <script src="shopping.js" type="module"></script>
     <script src="cart.js" type="module"></script>
