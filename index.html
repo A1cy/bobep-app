@@ -23,6 +23,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Favicon icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/appletouchicon.png">
+    <link rel="chrome-touch-icon" sizes="192x192" href="/androidchrome192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" type="image/png" href="assets/img/logo.ico" />
 
     <!-- Stylesheet -->
@@ -51,6 +56,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css2?family=Lobster&amp;family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&amp;family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
       rel="stylesheet"
@@ -80,9 +86,8 @@
           <div class="main-bar clearfix">
             <div class="container clearfix">
               <!-- Website Logo -->
-              <div class="logo-header mostion">
-                <a href="javascript(void)" class="anim-logo"
-                  ><img src="assets/images/logo.png" alt="/"
+              <div class="firstLogo mostion">
+                  <img src="assets/images/faviconMain/favicon.ico" alt="/"
                 /></a>
               </div>
 
@@ -221,16 +226,16 @@
                 class="header-nav navbar-collapse collapse justify-content-start"
                 id="navbarNavDropdown"
               >
-                <div class="logo-header">
-                  <a href="javascript(void)" class="anim-logo"
-                    ><img src="assets/images/logo.png" alt="/"
-                  /></a>
+                <div class=" firstLogo2 mostion">
+                 
+                    <img src="assets/images/faviconMain/favicon.ico" alt="/" 
+                  />
                 </div>
                 <ul class="nav navbar-nav navbar ms-lg-4">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="#about">About</a></li>
-                  <li><a href="#events">Events</a></li>
-                  <li><a href="#contactlink">Contact</a></li>
+                  <li><a href="#menu">Меню</a></li>
+                  <li><a href="#about">Наша История</a></li>
+                  <li><a href="#events">Праздники</a></li>
+                  <li><a href="#contacts">Контакты</a></li>
                 </ul>
                 <!-- <div class="dz-social-icon">
                   <ul>
@@ -283,13 +288,13 @@
           <div class="offcanvas-form" id="offcanvas-content">
             <!-- This content will be dynamically updated based on the user's login status -->
             <div class="login-head">
-              <h4 class="title">Welcome</h4>
-              <p>Join us and order now</p>
+              <h4 class="title">Добро Пожаловать!</h4>
+              <p>Присоединяйся и Заказывай!</p>
             </div>
 
             <!-- Sign In Form -->
             <div class="form-group m-b15" id="signin-form">
-              <label class="form-label">Email*</label>
+              <label class="form-label">Почта*</label>
               <div class="input-group">
                 <input
                   name="dzEmail"
@@ -297,19 +302,19 @@
                   required
                   type="text"
                   class="form-control"
-                  placeholder="Enter Your Email"
+                  placeholder="Введите Вашу Почту"
                 />
               </div>
             </div>
             <div class="form-group m-b30" id="signin-password-group">
-              <label class="form-label">Password*</label>
+              <label class="form-label">Пароль*</label>
               <div class="input-group search-input">
                 <input
                   name="password"
                   id="signin-password"
                   type="password"
                   class="form-control dz-password"
-                  placeholder="Enter a Password"
+                  placeholder="Создайте Пароль"
                 />
                 <div class="show-pass">
                   <svg
@@ -333,23 +338,23 @@
               type="submit"
               class="btn btn-primary w-100 d-block"
             >
-              Sign In
+              Регистрация
             </button>
             <p class="text-center m-t30" id="register-link">
-              Not registered?
+              Не Зарегестрирован?
               <a
                 class="register text-primary font-weight-500"
                 data-bs-toggle="offcanvas"
                 href="#offcanvasRegister"
                 role="button"
                 aria-controls="offcanvasRegister"
-                >Register here</a
+                >Зарегестрироваться Здесь</a
               >
             </p>
 
             <!-- Logout Button & Username -->
             <div id="user-info" class="m-t30" style="display: none">
-              <h5>Welcome, <span id="user-email" class="m-t30"></span></h5>
+              <h5>Добро пожаловать, <span id="user-name" class="m-t30"></span></h5>
               <button
                 name="submit"
                 id="signout-btn"
@@ -357,7 +362,7 @@
                 type="submit"
                 class="btn btn-danger w-100 d-block m-t30"
               >
-                Sign Out
+                Выйти
               </button>
             </div>
           </div>
@@ -374,23 +379,23 @@
           ></button>
           <div class="offcanvas-form">
             <div class="login-head">
-              <h4 class="title">Join Our App</h4>
-              <p>join now</p>
+              <h4 class="title">Присоединяйся!</h4>
+              <p></p>
             </div>
             <div class="form-group m-b15">
-              <label class="form-label">Name*</label>
+              <label class="form-label">Имя*</label>
               <div class="input-group">
                 <input
                   name="dzName"
                   required
                   type="text"
                   class="form-control"
-                  placeholder="Enter Your Name"
+                  placeholder="Введите Имя"
                 />
               </div>
             </div>
             <div class="form-group m-b15">
-              <label class="form-label">Email*</label>
+              <label class="form-label">Почта*</label>
               <div class="input-group">
                 <input
                   name="dzEmail"
@@ -398,19 +403,19 @@
                   required
                   type="text"
                   class="form-control"
-                  placeholder="Enter Your Email"
+                  placeholder="Введите Почту"
                 />
               </div>
             </div>
             <div class="form-group m-b30">
-              <label class="form-label">Password*</label>
+              <label class="form-label">Пароль*</label>
               <div class="input-group search-input">
                 <input
                   name="password"
                   id="signup-password"
                   type="password"
                   class="form-control dz-password"
-                  placeholder="Create a Password"
+                  placeholder="Создайте пароль"
                 />
               </div>
             </div>
@@ -421,17 +426,17 @@
               type="submit"
               class="btn btn-primary w-100 d-block"
             >
-              Sign Up
+              Зарегестрироваться
             </button>
             <p class="text-center m-t30">
-              Already have an account?
+              Уже есть аккаунт?
               <a
                 class="text-primary font-weight-500"
                 data-bs-toggle="offcanvas"
                 href="#offcanvasLogin"
                 role="button"
                 aria-controls="offcanvasLogin"
-                >Login</a
+                >Логин</a
               >
             </p>
           </div>
@@ -733,14 +738,14 @@
         >
           <!-- Banner -->
 
-          <div class="banner-inner">
+          <div class="banner-inner " id="about">
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-xl-6 col-lg-7 col-md-7">
                   <div class="banner-content">
-                    <h1 class="title wow fadeInUp" data-wow-delay="0.2s">
-                      Номер <span class="text-primary">#1</span> Выбор для
-                      решения вашего голода
+                    <h1 class="title wow fadeInUp " data-wow-delay="0.2s">
+                      Выбор <span class="text-primary">#1</span>  для
+                      настоящего аппетита
                     </h1>
                     <p class="wow fadeInUp" data-wow-delay="0.4s">
                       <br />Название <strong>"БОБЁР" 🦫</strong> возникло, когда
@@ -754,7 +759,7 @@
                       хотели передать в нашем кафе <strong>"БОБЁР"</strong>, где
                       каждый посетитель может насладиться вкусом дома!
                     </p>
-
+<!-- 
                     <div class="row m-t40">
                       <div
                         class="col-lg-3 col-md-6 col-sm-6 wow fadeInUp"
@@ -818,7 +823,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="col-xl-6 col-lg-5 col-md-5">
                   <div class="banner-media">
                     <div
@@ -827,7 +832,8 @@
                       data-speed-x="-2"
                       data-speed-scale="-1"
                     >
-                      <img src="assets/img/logo.webp" class="img2" alt="/" />
+                      <img src="assets/images/faviconMain/androidchrome192.png" class="img2 imgLogo" alt="/" />
+                      
                     </div>
                   </div>
                 </div>
@@ -837,7 +843,7 @@
         </section>
         <!-- End Service Section -->
 
-        <section class="content-inner-1">
+        <section class="content-inner-1" id="menu">
           <div class="container">
             <!-- Search Wrapper -->
             <div class="row search-wraper text-center">
@@ -858,7 +864,7 @@
                         type="submit"
                         class="btn btn-primary btn-hover-2"
                       >
-                        <span>Search</span><i class="icon-search"></i>
+                        <span>Поиск</span><i class="icon-search"></i>
                       </button>
                     </div>
                   </div>
@@ -877,7 +883,7 @@
                     ></a>
                     <div class="widget dz-widget_services">
                       <div class="widget-title">
-                        <h4 class="title">Refine By Categories</h4>
+                        <h4 class="title">Фильтр По Категориям</h4>
                       </div>
                       <div id="category-filters"></div>
                     </div>
@@ -885,7 +891,7 @@
                     <!-- Price Range Filter -->
                     <div class="widget">
                       <div class="widget-title">
-                        <h4 class="title">Price Range</h4>
+                        <h4 class="title">Ценовой Диапозон</h4>
                       </div>
                       <div class="range-slider style-1">
                         <div id="slider-tooltips"></div>
@@ -899,7 +905,7 @@
               <div class="col-lg-9">
                 <div class="d-flex justify-content-between align-items-center">
                   <h5 class="title mb-md-3 mb-lg-4 m-b20 d-none d-lg-block">
-                    Search Results
+                    Резульат Поиска
                   </h5>
                   <strong
                     class="filter-item-show m-b20"
@@ -920,7 +926,7 @@
                   <a
                     href="javascript:void(0);"
                     class="btn btn-primary panel-btn"
-                    >Filter</a
+                    >Фильтр</a
                   >
                 </div>
 
@@ -954,7 +960,7 @@
                     <div class="d-flex justify-content-between">
                       <div class="widget-title">
                         <h5 class="title m-b30">
-                          Cart
+                          Корзина
                           <span class="text-primary" id="cart-count">(0)</span>
                         </h5>
                       </div>
@@ -968,7 +974,7 @@
                     </div>
                     <!-- Bill Details -->
                     <div class="order-detail">
-                      <h6>Bill Details</h6>
+                      <h6>Детали Чека</h6>
                       <table>
                         <tbody>
                           <tr>
@@ -986,7 +992,7 @@
                             <td class="price text-primary">₽ 3.50</td>
                           </tr>
                           <tr class="total">
-                            <td><h6>Total</h6></td>
+                            <td><h6>Итого</h6></td>
                             <td class="price text-primary" id="cart-total">
                               ₽ 8.50
                             </td>
@@ -998,7 +1004,7 @@
                         class="btn btn-primary d-block text-center btn-md w-100 btn-hover-1"
                       >
                         <span
-                          >Order Now <i class="fa-solid fa-arrow-right"></i
+                          >Заказать <i class="fa-solid fa-arrow-right"></i
                         ></span>
                       </a>
                     </div>
@@ -1010,7 +1016,7 @@
         </section>
 
         <!-- Cart Section End -->
-        <section class="content-inner-2 overflow-hidden">
+        <section class="content-inner-2 overflow-hidden" id="events">
           <div class="container">
             <div class="section-head text-center">
               <h2 class="title wow flipInX" data-wow-delay="0.2s">
@@ -1416,7 +1422,7 @@
                     <input
                       type="text"
                       name="TIME"
-                      class="form-control"
+                      class="form-control fadeInUp"
                       id="time"
                       placeholder="Время праздника"
                       required
@@ -1456,12 +1462,7 @@
                 </div>
 
                 <div class="col-lg-12 mb-3 wow fadeInUp" data-wow-delay="0.6s">
-                  <div class="loading">Загрузка</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">
-                    Ваш запрос на бронирование был отправлен. Мы перезвоним или
-                    отправим ответ на почту для деталей бронирования. Спасибо!
-                  </div>
+                
                 </div>
 
                 <div
@@ -1483,7 +1484,7 @@
         <!-- Contact Section -->
 
         <!-- Map Iframe -->
-        <div class="map-iframe">
+        <div class="map-iframe" id="contacts">
           <div style="position: relative; overflow: hidden">
             <a
               href="https://yandex.ru/maps/org/bober/11946760160/?utm_medium=mapframe&utm_source=maps"
@@ -1521,8 +1522,9 @@
                 class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
                 data-wow-delay="0.5s"
               >
-                <h5 class="footer-title">Локация</h5>
-                <i class="fas fa-map-marker-alt"></i>
+                <h5 class="footer-title">Местоположение</h5>
+                
+                <i class="flaticon-placeholder"></i>
                 <!-- Font Awesome Icon -->
                 <p>
                   Привокзальная улица 21 <br />с.Топчиха Алтайского края, Россия
@@ -1534,7 +1536,7 @@
                 data-wow-delay="0.6s"
               >
                 <h5 class="footer-title">Почта</h5>
-                <i class="fas fa-envelope"></i>
+                <i class="flaticon-email-1"></i>
                 <!-- Font Awesome Icon -->
                 <p>cafe.bar.bober@gmail.com</p>
               </div>
@@ -1543,11 +1545,12 @@
                 class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
                 data-wow-delay="0.7s"
               >
-                <h5 class="footer-title">Телефон</h5>
-                <i class="fas fa-phone"></i>
+                <h5 class="footer-title info">Телефон</h5>
+                <i class="flaticon-telephone"></i>
                 <!-- Font Awesome Icon -->
-                <p>Заказ +79095026005</p>
-                <p>Оплата +79030739235</p>
+                <p>Заказ +79095026005<br>
+                  Оплата +79030739235
+                </p>
               </div>
 
               <div
@@ -1555,7 +1558,7 @@
                 data-wow-delay="0.8s"
               >
                 <h5 class="footer-title">Режим работы</h5>
-                <i class="fas fa-clock"></i>
+                <i class="flaticon-clock-1"></i>
                 <!-- Font Awesome Icon -->
                 <p>Пн-пт: с 9:00 - 21:00</p>
                 <p>Сб-вс: с 10:00 - 21:00</p>
@@ -1584,12 +1587,12 @@
           <div class="footer-bottom">
             <div class="row">
               <div class="col-xl-6 col-md-6 text-md-start">
-                <p>Copyright 2024 Все права защищены "БОБЁР".</p>
+                <p>Авторство "БОБЁР". Все права защищены 2024</p>
               </div>
               <div class="col-xl-6 col-md-6 text-md-end">
                 <span class="copyright-text">
-                  Crafted With <span class="fas fa-heart"></span> by
-                  <a href="https://a1xai.com/" target="_blank">A1</a>
+                  Crafted <span ></span> by
+                  <a href="https://a1xai.com/" target="_blank">A1 & HacKris</a>
                 </span>
               </div>
             </div>

@@ -41,7 +41,7 @@ function displayProducts(page = 1) {
 function updateTotalItemsCount(count) {
   document.querySelector(
     ".filter-item-show"
-  ).innerText = `Search: ${count} items`;
+  ).innerText = `Поиск: ${count} элемента`;
 }
 
 // Function to update pagination controls based on the number of pages.
@@ -109,7 +109,7 @@ function generateMenuItems(menuArray) {
             <div class="dz-meta">
               <ul>
                 <li class="seller">${item.category}</li>
-                <li class="rating"><i class="fa-solid fa-weight"></i> 45 rp</li>
+                <li class="rating"><i class="fa-solid fa-weight"></i>${item.gramms} гр</li>
               </ul>
             </div>
           </div>
@@ -121,7 +121,7 @@ function generateMenuItems(menuArray) {
             <h5 class="price">₽ ${item.price ?? "N/A"}</h5>
             <a href="javascript:void(0);" data-id="${
               item.id
-            }" class="btn btn-primary btn-hover-2">Add To Cart</a>
+            }" class="btn btn-primary btn-hover-2">в корзину</a>
           </div>
         </div>
       </li>
