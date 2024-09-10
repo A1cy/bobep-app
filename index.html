@@ -70,8 +70,9 @@
         <span data-text="Б" class="text-load">Б</span>
         <span data-text="Ё" class="text-load">Ё</span>
         <span data-text="Р" class="text-load">Р</span>
-        <span data-text="" class="text-load"
-          ><img src="assets/images/loading.gif" alt=""
+        <br>     
+        <span data-text="" class="text-load">
+          <img src="assets/images/loading.gif" alt="" 
         /></span>
       </div>
     </div>
@@ -129,7 +130,7 @@
                         <i class="flaticon-shopping-bag-1"></i>
                         <span class="badge">6</span>
                       </button>
-                      <ul class="dropdown-menu cart-list">
+                      <!-- <ul class="dropdown-menu cart-list">
                         <li class="cart-item">
                           <div class="media">
                             <div class="media-left">
@@ -199,7 +200,7 @@
                         <li
                           class="cart-item text-center d-flex justify-content-between"
                         >
-                          <h6 class="text-primary mb-0">Total:</h6>
+                          <h6 class="text-primary mb-0">Итого:</h6>
                           <h6 class="text-primary mb-0">$63</h6>
                         </li>
                         <li class="text-center d-flex">
@@ -214,7 +215,7 @@
                             ><span>Menu</span></a
                           >
                         </li>
-                      </ul>
+                      </ul> -->
                     </li>
                   </ul>
                 </div>
@@ -294,7 +295,7 @@
 
             <!-- Sign In Form -->
             <div class="form-group m-b15" id="signin-form">
-              <label class="form-label">Почта*</label>
+              <label class="form-label">Почта</label>
               <div class="input-group">
                 <input
                   name="dzEmail"
@@ -307,14 +308,14 @@
               </div>
             </div>
             <div class="form-group m-b30" id="signin-password-group">
-              <label class="form-label">Пароль*</label>
+              <label class="form-label">Пароль</label>
               <div class="input-group search-input">
                 <input
                   name="password"
                   id="signin-password"
                   type="password"
                   class="form-control dz-password"
-                  placeholder="Создайте Пароль"
+                  placeholder="Введите Ваш Пароль"
                 />
                 <div class="show-pass">
                   <svg
@@ -338,23 +339,23 @@
               type="submit"
               class="btn btn-primary w-100 d-block"
             >
-              Регистрация
+              ВОЙТИ
             </button>
             <p class="text-center m-t30" id="register-link">
-              Не Зарегестрирован?
+              Не Зарегистрирован?<br>
               <a
                 class="register text-primary font-weight-500"
                 data-bs-toggle="offcanvas"
                 href="#offcanvasRegister"
                 role="button"
                 aria-controls="offcanvasRegister"
-                >Зарегестрироваться Здесь</a
+                >Кликни Здесь </a
               >
             </p>
 
             <!-- Logout Button & Username -->
             <div id="user-info" class="m-t30" style="display: none">
-              <h5>Добро пожаловать, <span id="user-name" class="m-t30"></span></h5>
+              <h5>Здравствуйте, <span id="user-email" class="m-t30"></span></h5>
               <button
                 name="submit"
                 id="signout-btn"
@@ -383,19 +384,19 @@
               <p></p>
             </div>
             <div class="form-group m-b15">
-              <label class="form-label">Имя*</label>
+              <label class="form-label">Имя</label>
               <div class="input-group">
                 <input
                   name="dzName"
                   required
                   type="text"
                   class="form-control"
-                  placeholder="Введите Имя"
+                  placeholder="Введите Ваше Имя"
                 />
               </div>
             </div>
             <div class="form-group m-b15">
-              <label class="form-label">Почта*</label>
+              <label class="form-label">Почта</label>
               <div class="input-group">
                 <input
                   name="dzEmail"
@@ -403,19 +404,19 @@
                   required
                   type="text"
                   class="form-control"
-                  placeholder="Введите Почту"
+                  placeholder="Введите Вашу Почту"
                 />
               </div>
             </div>
             <div class="form-group m-b30">
-              <label class="form-label">Пароль*</label>
+              <label class="form-label">Пароль</label>
               <div class="input-group search-input">
                 <input
                   name="password"
                   id="signup-password"
                   type="password"
                   class="form-control dz-password"
-                  placeholder="Создайте пароль"
+                  placeholder="Создайте Ваш пароль"
                 />
               </div>
             </div>
@@ -426,7 +427,7 @@
               type="submit"
               class="btn btn-primary w-100 d-block"
             >
-              Зарегестрироваться
+              РЕГИСТРАЦИЯ
             </button>
             <p class="text-center m-t30">
               Уже есть аккаунт?
@@ -436,7 +437,7 @@
                 href="#offcanvasLogin"
                 role="button"
                 aria-controls="offcanvasLogin"
-                >Логин</a
+                > - Логин!</a
               >
             </p>
           </div>
@@ -444,7 +445,7 @@
       </div>
 
       <!-- Supabase Authentication Script -->
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+      <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
       <script>
         document.addEventListener("DOMContentLoaded", async () => {
           const SUPABASE_URL = "https://qifktfxzhigtidwrnafw.supabase.co";
@@ -488,7 +489,7 @@
               });
 
               if (error) {
-                alert(`Sign-in error: ${error.message}`);
+                alert(`Ошибка: ${error.message}`);
               } else {
                 document.getElementById("signin-form").style.display = "none";
                 document.getElementById("signin-password-group").style.display =
@@ -525,7 +526,84 @@
               session.data.session.user.email;
           }
         });
-      </script>
+      </script> -->
+<!-- Supabase Authentication Script -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const SUPABASE_URL = "https://qifktfxzhigtidwrnafw.supabase.co";
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpZmt0Znh6aGlndGlkd3JuYWZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4NzU1NDMsImV4cCI6MjA0MTQ1MTU0M30.dXMdlgC1lQf9kyqSEsI5VNcryzqFHVvAsvBdo_itqVo";
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Sign up event
+    document.getElementById("signup-btn").addEventListener("click", async (e) => {
+      e.preventDefault();
+      const name = document.querySelector("input[name='dzName']").value; // Get the user's name
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: name }, // Store the user's name
+        },
+      });
+
+      if (error) {
+        alert(`Sign-up error: ${error.message}`);
+      } else {
+        alert(`Sign-up successful! Please verify your email.`);
+      }
+    });
+
+    // Sign in event
+    document.getElementById("signin-btn").addEventListener("click", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("signin-email").value;
+      const password = document.getElementById("signin-password").value;
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        alert(`Ошибка: ${error.message}`);
+      } else {
+        document.getElementById("signin-form").style.display = "none";
+        document.getElementById("signin-password-group").style.display = "none";
+        document.getElementById("register-link").style.display = "none";
+        document.getElementById("user-info").style.display = "block";
+        document.getElementById("user-email").textContent = data.user.user_metadata.full_name; // Greet by name
+      }
+    });
+
+    // Sign out event
+    document.getElementById("signout-btn").addEventListener("click", async () => {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        alert(`Sign-out error: ${error.message}`);
+      } else {
+        alert("Sign-out successful!");
+        location.reload(); // Reload to reset the login screen
+      }
+    });
+
+    // Check for existing session on load
+    const session = await supabase.auth.getSession();
+    if (session.data.session) {
+      document.getElementById("signin-form").style.display = "none";
+      document.getElementById("signin-password-group").style.display = "none";
+      document.getElementById("register-link").style.display = "none";
+      document.getElementById("user-info").style.display = "block";
+      document.getElementById("user-email").textContent =
+        session.data.session.user.user_metadata.full_name; // Display name instead of email
+    }
+  });
+</script>
 
       <!-- Offcanvas Form End -->
       <div class="page-content bg-white">
@@ -545,7 +623,7 @@
                   data-swiper-parallax="-10"
                   data-swiper-parallax-duration="0.5"
                   style="
-                    background-image: url('/assets/img/dalle34copy.jpg');
+                    background-image: url('assets/img/dalle345.jpg');
                     background-size: cover;
                   "
                 >
@@ -567,13 +645,13 @@
                             радость каждому гостю.
                           </p>
                           <div class="banner-btn d-flex align-items-center">
-                            <a
-                              href="javascript(void)"
+                            <a                 
+                              href="#menu"
                               class="btn btn-primary btn-md shadow-primary m-r30 btn-hover-1"
                               ><span>Наше Меню</span></a
                             >
                             <a
-                              href="javascript(void)"
+                              href="#about"
                               class="btn btn-outline-primary btn-md shadow-primary btn-hover-1"
                               ><span>Наша История</span></a
                             >
@@ -629,12 +707,12 @@
                           </p>
                           <div class="banner-btn d-flex align-items-center">
                             <a
-                              href="javascript(void)"
+                              href="#menu"
                               class="btn btn-primary btn-md shadow-primary m-r30 btn-hover-1"
                               ><span>Заказать</span></a
                             >
                             <a
-                              href="javascript(void)"
+                              href="#about"
                               class="btn btn-outline-primary btn-md shadow-primary btn-hover-1"
                               ><span>Подробнее</span></a
                             >
@@ -694,12 +772,12 @@
                           </p>
                           <div class="banner-btn d-flex align-items-center">
                             <a
-                              href="javascript(void)"
+                              href="#menu"
                               class="btn btn-primary btn-md shadow-primary m-r30 btn-hover-1"
                               ><span>Заказать сейчас</span></a
                             >
                             <a
-                              href="javascript(void)"
+                              href="#about"
                               class="btn btn-outline-primary btn-md shadow-primary btn-hover-1"
                               ><span>Подробнее</span></a
                             >
@@ -855,7 +933,7 @@
                       type="text"
                       class="form-control"
                       id="search-input"
-                      placeholder="Type here"
+                      placeholder="поиск по меню"
                     />
                     <div class="input-group-addon">
                       <button
@@ -929,7 +1007,7 @@
                     >Фильтр</a
                   >
                 </div>
-
+                
                 <!-- Product Listing -->
                 <ul id="masonry" class="row"></ul>
 
@@ -978,7 +1056,7 @@
                       <table>
                         <tbody>
                           <tr>
-                            <td>Item Total</td>
+                            <td>Итого</td>
                             <td class="price text-primary" id="item-total">
                               ₽ 0.00
                             </td>
@@ -1518,70 +1596,51 @@
           <div class="container">
             <div class="row">
               <!-- Contact Information in Russian with Font Awesome Icons -->
-              <div
-                class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
-                data-wow-delay="0.5s"
-              >
-                <h5 class="footer-title">Местоположение</h5>
-                
-                <i class="flaticon-placeholder"></i>
-                <!-- Font Awesome Icon -->
-                <p>
-                  Привокзальная улица 21 <br />с.Топчиха Алтайского края, Россия
-                </p>
-              </div>
-
-              <div
-                class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
-                data-wow-delay="0.6s"
-              >
-                <h5 class="footer-title">Почта</h5>
-                <i class="flaticon-email-1"></i>
-                <!-- Font Awesome Icon -->
-                <p>cafe.bar.bober@gmail.com</p>
-              </div>
-
-              <div
-                class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
-                data-wow-delay="0.7s"
-              >
-                <h5 class="footer-title info">Телефон</h5>
-                <i class="flaticon-telephone"></i>
-                <!-- Font Awesome Icon -->
-                <p>Заказ +79095026005<br>
-                  Оплата +79030739235
-                </p>
-              </div>
-
-              <div
-                class="col-lg-3 col-md-6 info mt-4 wow fadeInUp"
-                data-wow-delay="0.8s"
-              >
-                <h5 class="footer-title">Режим работы</h5>
-                <i class="flaticon-clock-1"></i>
-                <!-- Font Awesome Icon -->
-                <p>Пн-пт: с 9:00 - 21:00</p>
-                <p>Сб-вс: с 10:00 - 21:00</p>
-              </div>
-
-              <!-- Social Links -->
-              <div class="col-lg-12 mt-5 text-center">
-                <h3>БОБЁР</h3>
-                <div class="social-links">
-                  <a href="https://t.me/CafeBarBober" class="telegram"
-                    ><i class="fab fa-telegram-plane"></i
-                  ></a>
-                  <a
-                    href="https://chat.whatsapp.com/JD5tm89FApd5pwmajTwi62"
-                    class="whatsapp"
-                    ><i class="fab fa-whatsapp"></i
-                  ></a>
+              <div class="row info-section">
+                <div class="col-lg-3 col-md-6 info mt-4">
+                  <i class="flaticon-placeholder"></i>
+                  <h5 class="footer-title">Местоположение</h5>
+                  <p>
+                    Привокзальная улица 21 <br />с.Топчиха Алтайского края, Россия
+                  </p>
+                </div>
+              
+                <div class="col-lg-3 col-md-6 info mt-4">
+                  <i class="flaticon-email-1"></i>
+                  <h5 class="footer-title">Почта</h5>
+                  <p>cafe.bar.bober@gmail.com</p>
+                </div>
+              
+                <div class="col-lg-3 col-md-6 info mt-4">
+                  <i class="flaticon-telephone"></i>
+                  <h5 class="footer-title">Телефон</h5>
+                  <p>
+                    Заказ +79095026005<br/>
+                    Оплата +79030739235
+                  </p>
+                </div>
+              
+                <div class="col-lg-3 col-md-6 info mt-4">
+                  <i class="flaticon-clock-1"></i>
+                  <h5 class="footer-title">Режим работы</h5>
+                  <p>Пн-пт: с 9:00 - 21:00<br>
+                    Сб-вс: с 10:00 - 21:00</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
+              
+              <!-- Social Links -->
+              <div class="col-lg-12 mt-5 text-center">
+                <div class="social-links">
+                  <a href="https://t.me/CafeBarBober" class="telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                  </a>
+                  <a href="https://chat.whatsapp.com/JD5tm89FApd5pwmajTwi62" class="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </div>
+              </div>
+               ⁠
+              
         <!-- Footer Bottom Part -->
         <div class="container">
           <div class="footer-bottom">

@@ -138,15 +138,15 @@ function updateCartUI() {
     "beforeend",
     `
         <li class="cart-item text-center d-flex justify-content-between">
-            <h6 class="text-primary mb-0">Total:</h6>
+            <h6 class="text-primary mb-0">Итого:</h6>
             <h6 class="text-primary mb-0">₽ ${cartTotal.toFixed(2)}</h6>
         </li>
         <li class="text-center d-flex">
             <a href="shop-cart.html" class="btn btn-primary me-2 w-100 d-block btn-hover-1">
-                <span>View Cart</span>
+                <span>ОТКРЫТЬ</span>
             </a>
             <a href="shop-checkout.html" class="btn btn-outline-primary w-100 d-block btn-hover-1">
-                <span>Order Now</span>
+                <span>ЗАКАЗАТЬ</span>
             </a>
         </li>
     `

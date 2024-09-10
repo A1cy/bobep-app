@@ -41,7 +41,7 @@ function displayProducts(page = 1) {
 function updateTotalItemsCount(count) {
   document.querySelector(
     ".filter-item-show"
-  ).innerText = `Поиск: ${count} элемента`;
+  ).innerText = `Поиск: ${count} прод.`;
 }
 
 // Function to update pagination controls based on the number of pages.
@@ -121,7 +121,7 @@ function generateMenuItems(menuArray) {
             <h5 class="price">₽ ${item.price ?? "N/A"}</h5>
             <a href="javascript:void(0);" data-id="${
               item.id
-            }" class="btn btn-primary btn-hover-2">в корзину</a>
+            }" class="btn btn-primary btn-hover-2">В КОРЗИНУ</a>
           </div>
         </div>
       </li>
