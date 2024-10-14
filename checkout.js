@@ -1,5 +1,8 @@
 // checkout.js
-
+const formatter = new Intl.NumberFormat("ru-RU", {
+  style: "currency",
+  currency: "RUB",
+});
 // Function to load cart from localStorage
 function loadCartFromLocalStorage() {
   const cartData = localStorage.getItem("cart");
@@ -116,7 +119,7 @@ function printInvoice() {
   const invoiceWindow = window.open(
     "",
     "Print Invoice",
-    "height=600,width=800"
+    "height=800,width=600"
   );
 
   // Build the invoice HTML
@@ -127,17 +130,25 @@ function printInvoice() {
         <style>
           body { font-family: Arial, sans-serif; padding: 20px; }
           h1 { text-align: center; }
+          .logo { text-align: center; margin-bottom: 20px; }
+          .logo img { max-width: 150px; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
           table, th, td { border: 1px solid #000; }
           th, td { padding: 8px; text-align: left; }
           .total { font-weight: bold; }
+          .text-right { text-align: right; }
         </style>
       </head>
       <body>
-        <h1>Invoice</h1>
-        <p><strong>Order ID:</strong> ${order.orderId}</p>
-        <p><strong>Order Date:</strong> ${order.orderDate}</p>
-        <h2>Customer Information</h2>
+        <div class="logo">
+          <img src="${
+            window.location.origin
+          }/assets/images/faviconMain/androidchrome192.png" alt="Logo">
+        </div>
+        <h1>Счёт-фактура</h1>
+        <p><strong>Номер заказа:</strong> ${order.orderId}</p>
+        <p><strong>Дата заказа:</strong> ${order.orderDate}</p>
+        <h2>Информация о клиенте</h2>
         <p>
           ${order.customerInfo["dzFirstName"] || ""} ${
     order.customerInfo["dzLastName"] || ""
@@ -149,14 +160,15 @@ function printInvoice() {
           ${order.customerInfo["dzEmail"] || ""}<br>
           ${order.customerInfo["dzPhoneNumber"] || ""}
         </p>
-        <h2>Order Summary</h2>
+        <h2>Сводка заказа</h2>
         <table>
           <thead>
             <tr>
-              <th>Product</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
+              <th>Продукт</th>
+              <th>Дополнения</th>
+              <th>Количество</th>
+              <th>Цена</th>
+              <th>Всего</th>
             </tr>
           </thead>
           <tbody>
@@ -168,12 +180,30 @@ function printInvoice() {
     const itemTotal = item.price * item.quantity;
     subtotal += itemTotal;
 
+    // Calculate add-ons total
+    let addOnsTotal = 0;
+    let addOnsText = "";
+    if (item.addOns && item.addOns.length > 0) {
+      addOnsText = item.addOns
+        .map((addOn) => {
+          addOnsTotal += addOn.price;
+          return `${addOn.name} (₽${addOn.price.toFixed(2)})`;
+        })
+        .join(", ");
+    } else {
+      addOnsText = "Нет";
+    }
+
+    // Include add-ons price in item total
+    const totalPrice = (item.price + addOnsTotal) * item.quantity;
+
     invoiceWindow.document.write(`
       <tr>
         <td>${item.name}</td>
-        <td>${item.quantity}</td>
-        <td>₽ ${item.price.toFixed(2)}</td>
-        <td>₽ ${itemTotal.toFixed(2)}</td>
+        <td>${addOnsText}</td>
+        <td class="text-right">${item.quantity}</td>
+        <td class="text-right">₽ ${(item.price + addOnsTotal).toFixed(2)}</td>
+        <td class="text-right">₽ ${totalPrice.toFixed(2)}</td>
       </tr>
     `);
   });
@@ -184,10 +214,12 @@ function printInvoice() {
   invoiceWindow.document.write(`
           </tbody>
         </table>
-        <p class="total"><strong>Subtotal:</strong> ₽ ${subtotal.toFixed(2)}</p>
-        <p class="total"><strong>Taxes:</strong> ₽ ${taxes.toFixed(2)}</p>
-        <p class="total"><strong>Total:</strong> ₽ ${total.toFixed(2)}</p>
-        <p>Thank you for your purchase!</p>
+        <p class="total"><strong>Промежуточный итог:</strong> ₽ ${subtotal.toFixed(
+          2
+        )}</p>
+        <p class="total"><strong>Налоги:</strong> ₽ ${taxes.toFixed(2)}</p>
+        <p class="total"><strong>Итого:</strong> ₽ ${total.toFixed(2)}</p>
+        <p>Спасибо за вашу покупку!</p>
       </body>
     </html>
   `);
