@@ -2,7 +2,6 @@ import { menuArray } from "./data.js";
 import { addToCart } from "./cart.js";
 
 // `filteredMenu` holds the currently filtered list of products to be displayed.
-// Initially, it contains all items from `menuArray`.
 let filteredMenu = [...menuArray];
 
 // `currentPage` tracks the current page number for pagination.
@@ -52,14 +51,14 @@ function updatePaginationControls() {
   const paginationHtml = Array.from(
     { length: totalPages },
     (_, index) => `
-    <li class="${index + 1 === currentPage ? "active" : ""}">
-      <a href="javascript:void(0);" class="pagination-link" data-page="${
-        index + 1
-      }">
-        ${index + 1}
-      </a>
-    </li>
-  `
+      <li class="${index + 1 === currentPage ? "active" : ""}">
+        <a href="javascript:void(0);" class="pagination-link" data-page="${
+          index + 1
+        }">
+          ${index + 1}
+        </a>
+      </li>
+    `
   ).join("");
 
   // Insert the pagination buttons into the DOM.
@@ -102,30 +101,33 @@ function generateMenuItems(menuArray) {
     .map((item) => {
       const imageUrl = item.imageUrl || fallbackImageUrl; // Use the fallback image if no image URL is provided.
       return `
-      <li class="card-container col-xl-4 col-md-6 m-b30">
-        <div class="dz-img-box style-7">
-          <div class="dz-media">
-            <img src="${imageUrl}" alt="${item.name}" />
-            <div class="dz-meta">
-              <ul>
-                <li class="seller">${item.category}</li>
-                <li class="rating"><i class="fa-solid fa-weight"></i>${item.gramms} гр</li>
-              </ul>
+        <li class="card-container col-xl-4 col-md-6 m-b30">
+          <div class="dz-img-box style-7">
+            <div class="dz-media">
+              <img src="${imageUrl}" alt="${item.name}" />
+              <div class="dz-meta">
+                <ul>
+                  <li class="seller">${item.category}</li>
+                  <li class="rating"><i class="fa-solid fa-weight"></i>${
+                    item.gramms
+                  } гр</li>
+                </ul>
+              </div>
+            </div>
+            <div class="dz-content">
+              <!-- Updated the href to include the product ID -->
+              <h5 class="title"><a href="product-detail.html?id=${item.id}">${
+        item.name
+      }</a></h5>
+              <p>${item.description}</p>
+              <h5 class="price">₽ ${item.price ?? "N/A"}</h5>
+              <a href="javascript:void(0);" data-id="${
+                item.id
+              }" class="btn btn-primary btn-hover-2">В КОРЗИНУ</a>
             </div>
           </div>
-          <div class="dz-content">
-            <h5 class="title"><a href="product-detail.html">${
-              item.name
-            }</a></h5>
-            <p>${item.description}</p>
-            <h5 class="price">₽ ${item.price ?? "N/A"}</h5>
-            <a href="javascript:void(0);" data-id="${
-              item.id
-            }" class="btn btn-primary btn-hover-2">В КОРЗИНУ</a>
-          </div>
-        </div>
-      </li>
-    `;
+        </li>
+      `;
     })
     .join(""); // Join the array of HTML strings into a single string.
 }
@@ -154,11 +156,11 @@ function generateCategoryFilters(menuArray) {
     .map((category) => {
       const categoryId = category.toLowerCase().replace(/\s+/g, "-"); // Create an ID-friendly version of the category name.
       return `
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="${categoryId}" id="category-${categoryId}" />
-        <label class="form-check-label" for="category-${categoryId}">${category}</label>
-      </div>
-    `;
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="${categoryId}" id="category-${categoryId}" />
+          <label class="form-check-label" for="category-${categoryId}">${category}</label>
+        </div>
+      `;
     })
     .join(""); // Join the array of HTML strings into a single string.
 }

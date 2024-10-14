@@ -12872,7 +12872,9 @@ i[class*="flaticon-"] {
 .styleswitcher.hide {
   display: none;
 }
-
+.DZ-theme-btn{
+  display: none;
+}
 /* Google Recaptcha */
 .g-recaptcha,
 #rc-imageselect {

@@ -130,7 +130,7 @@
                         <i class="flaticon-shopping-bag-1"></i>
                         <span class="badge">6</span>
                       </button>
-                      <!-- <ul class="dropdown-menu cart-list">
+                        <ul class="dropdown-menu cart-list">
                         <li class="cart-item">
                           <div class="media">
                             <div class="media-left">
@@ -215,7 +215,7 @@
                             ><span>Menu</span></a
                           >
                         </li>
-                      </ul> -->
+                      </ul>  
                     </li>
                   </ul>
                 </div>
@@ -443,91 +443,7 @@
           </div>
         </div>
       </div>
-
-      <!-- Supabase Authentication Script -->
-      <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
-      <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-          const SUPABASE_URL = "https://qifktfxzhigtidwrnafw.supabase.co";
-          const SUPABASE_ANON_KEY =
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpZmt0Znh6aGlndGlkd3JuYWZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4NzU1NDMsImV4cCI6MjA0MTQ1MTU0M30.dXMdlgC1lQf9kyqSEsI5VNcryzqFHVvAsvBdo_itqVo";
-
-          const supabase = window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_ANON_KEY
-          );
-
-          // Sign up event
-          document
-            .getElementById("signup-btn")
-            .addEventListener("click", async (e) => {
-              e.preventDefault();
-              const email = document.getElementById("signup-email").value;
-              const password = document.getElementById("signup-password").value;
-              const { data, error } = await supabase.auth.signUp({
-                email,
-                password,
-              });
-
-              if (error) {
-                alert(`Sign-up error: ${error.message}`);
-              } else {
-                alert(`Sign-up successful! Please verify your email.`);
-              }
-            });
-
-          // Sign in event
-          document
-            .getElementById("signin-btn")
-            .addEventListener("click", async (e) => {
-              e.preventDefault();
-              const email = document.getElementById("signin-email").value;
-              const password = document.getElementById("signin-password").value;
-              const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-              });
-
-              if (error) {
-                alert(`Ошибка: ${error.message}`);
-              } else {
-                document.getElementById("signin-form").style.display = "none";
-                document.getElementById("signin-password-group").style.display =
-                  "none";
-                document.getElementById("register-link").style.display = "none";
-                document.getElementById("user-info").style.display = "block";
-                document.getElementById("user-email").textContent =
-                  data.user.email;
-              }
-            });
-
-          // Sign out event
-          document
-            .getElementById("signout-btn")
-            .addEventListener("click", async () => {
-              const { error } = await supabase.auth.signOut();
-              if (error) {
-                alert(`Sign-out error: ${error.message}`);
-              } else {
-                alert("Sign-out successful!");
-                location.reload(); // Reload to reset the login screen
-              }
-            });
-
-          // Check for existing session on load
-          const session = await supabase.auth.getSession();
-          if (session.data.session) {
-            document.getElementById("signin-form").style.display = "none";
-            document.getElementById("signin-password-group").style.display =
-              "none";
-            document.getElementById("register-link").style.display = "none";
-            document.getElementById("user-info").style.display = "block";
-            document.getElementById("user-email").textContent =
-              session.data.session.user.email;
-          }
-        });
-      </script> -->
-<!-- Supabase Authentication Script -->
+ 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", async () => {
@@ -1078,7 +994,7 @@
                         </tbody>
                       </table>
                       <a
-                        href="shop-checkout.html"
+                        href="checkout.html"
                         class="btn btn-primary d-block text-center btn-md w-100 btn-hover-1"
                       >
                         <span
@@ -1713,7 +1629,10 @@
     <!-- TOUCHSPIN -->
     <script src="assets/vendor/nouislider/nouislider.min.js"></script>
 
+    <script src="data.js" type="module"></script>
     <script src="shopping.js" type="module"></script>
-    <script src="cart.js" type="module"></script>
+<script src="cart.js" type="module"></script>
+<!-- <script src="product-detail.js" type="module"></script> -->
+
   </body>
 </html>

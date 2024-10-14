@@ -952,9 +952,7 @@ var swigo = (function () {
 
   /* Handle Support ============ */
   var handleSupport = function () {
-    var support =
-      '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js"></script>';
-    jQuery("body").append(support);
+    // Do nothing or remove this function entirely
   };
 
   /* Function ============ */
@@ -994,7 +992,7 @@ var swigo = (function () {
       handlePointerEffect();
       handleBoxAware();
       handledzNumber();
-      handleSupport();
+      // handleSupport();
     },
 
     load: function () {
