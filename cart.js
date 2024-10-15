@@ -128,9 +128,7 @@ function updateCartUI() {
             <h6 class="text-primary mb-0">₽ ${cartTotal.toFixed(2)}</h6>
         </li>
         <li class="text-center d-flex">
-            <a href="shop-cart.html" class="btn btn-primary me-2 w-100 d-block btn-hover-1">
-                <span>ОТКРЫТЬ</span>
-            </a>
+ 
             <a href="checkout.html" class="btn btn-outline-primary w-100 d-block btn-hover-1">
                 <span>ЗАКАЗАТЬ</span>
             </a>

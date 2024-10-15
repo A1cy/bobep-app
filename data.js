@@ -4,45 +4,44 @@ export const menuArray = [
     category: "Пицца", // Category of the product
     name: "ДЕРЕВЕНСКАЯ", // Name of the product
     description:
-      "A flavorful pizza topped with salami, mozzarella, pickles, red onion, and smoked chicken. Perfect for those who love a mix of smoky and tangy flavors.", // Detailed description
+      "Ароматная пицца с салями, моцареллой, солеными огурцами, красным луком и копченой курицей. Идеально подходит для тех, кто любит сочетание дымных и острых вкусов.", // Detailed description
     price: 480, // Price in rubles
     imageUrl: "assets/1MENUImages/1-деревенская.jpg", // Image URL of the product
     gramms: "400", // Weight in grams
     addOns: [
       // List of available add-ons for this product
+      
       {
         id: "addon1",
-        name: "French Fries",
+        name: "Картошка фри",
         price: 100,
         imageUrl: "assets/images/modal/mini/pic1.jpg",
       },
       {
         id: "addon2",
-        name: "Extra Cheese",
+        name: "Двойной сыр",
         price: 50,
         imageUrl: "assets/images/modal/mini/pic2.jpg",
       },
       {
         id: "addon3",
-        name: "Coca Cola",
+        name: "Кока-кола",
         price: 70,
         imageUrl: "assets/images/modal/mini/pic3.jpg",
       },
       {
         id: "addon4",
-        name: "Choco Lava",
+        name: "Чизкейк",
         price: 120,
         imageUrl: "assets/images/modal/mini/pic4.jpg",
       },
     ],
     additionalInformation: [
       // Additional information to display in a table
-      { label: "Size", value: "Small, Medium & Large" },
-      { label: "Toppings", value: "Onion, Tomato, Olives" },
-      { label: "Rating", value: 4.5 },
-      { label: "Shipping Charges", value: "Free Shipping" },
-      { label: "Add More", value: "Coke, Cheese, Choco Lava" },
-      { label: "Delivery Time", value: "30 mins" },
+      { label: "Размер", value: "Маленькая, Средняя, Большая" },
+      { label: "Ингридиенты", value: "Onion, Tomato, Olives" },
+      { label: "Оценка", value: 4.3 },
+      { label: "Время приготовления", value: "30-45 минут" },
     ],
   },
   {
