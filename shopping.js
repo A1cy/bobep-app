@@ -11,7 +11,7 @@ let currentPage = 1;
 const itemsPerPage = 9;
 
 // `fallbackImageUrl` is a default image URL to use when a product doesn't have an image.
-const fallbackImageUrl = "https://bobep.vercel.app/assets/img/logo.webp";
+const fallbackImageUrl = "assets/img/logo.webp";
 
 // Function to display products on the current page.
 function displayProducts(page = 1) {

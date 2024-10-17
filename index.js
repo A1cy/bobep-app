@@ -5,7 +5,7 @@ const orderArray = [];
 
 // Function to create HTML for menu items with fallback image
 function createMenuHtml(menuArray) {
-  const fallbackImageUrl = "https://bobep.vercel.app/assets/img/logo.webp";
+  const fallbackImageUrl = "assets/img/logo.webp";
 
   return menuArray
     .map((menuItem) => {
@@ -79,7 +79,7 @@ function generateCategoryFilters(menuArray) {
 }
 
 function generateMenuItems(menuArray) {
-  const fallbackImageUrl = "https://bobep.vercel.app/assets/img/logo.webp";
+  const fallbackImageUrl = "assets/img/logo.webp";
 
   return menuArray
     .map((item) => {

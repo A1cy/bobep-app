@@ -1,7 +1,7 @@
 // checkout.js
 const formatter = new Intl.NumberFormat("ru-RU", {
   style: "currency",
-  currency: "RUB",
+  currency: "РУБ",
 });
 // Function to load cart from localStorage
 function loadCartFromLocalStorage() {
