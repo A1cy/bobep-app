@@ -556,7 +556,7 @@
   <div class="row">
     <div class="col-lg-6">
       <div class="widget">
-        <h4 class="widget-title">Адрес оплаты и доставки</h4>
+        <h4 class="widget-title">Адрес, оплата и доставка</h4>
         <!-- Billing Form Fields -->
         <div class="form-group m-b20">
           <input
@@ -603,33 +603,6 @@
             placeholder="Адрес"
           />
         </div>
-        <div class="form-group m-b20">
-          <input
-            name="dzOther[Town/City]"
-            required
-            type="text"
-            class="form-control"
-            placeholder="Город"
-          />
-        </div>
-        <div class="form-group m-b20">
-          <input
-            name="dzOther[State/County]"
-            required
-            type="text"
-            class="form-control"
-            placeholder="Область"
-          />
-        </div>
-        <div class="form-group m-b20">
-          <input
-            name="Postcode/Zip"
-            required
-            type="text"
-            class="form-control"
-            placeholder="Почтовый индекс"
-          />
-        </div>
       </div>
     </div>
   </div>
@@ -641,13 +614,13 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="widget">
-                  <h4 class="widget-title">Your Order</h4>
+                  <h4 class="widget-title">Ваш Заказ</h4>
                   <table class="table-bordered check-tbl">
                     <thead class="text-center">
                       <tr>
-                        <th>IMAGE</th>
-                        <th>PRODUCT NAME</th>
-                        <th>TOTAL</th>
+                        <th>ФОТО</th>
+                        <th>Наименование</th>
+                        <th>Сумма</th>
                       </tr>
                     </thead>
                    <tbody id="order-summary">
@@ -658,31 +631,30 @@
               </div>
               <div class="col-lg-6">
                 <form class="shop-form widget">
-                  <h4 class="widget-title">Order Total</h4>
+                  <h4 class="widget-title">Общая Сумма</h4>
                   <!-- Order Totals Table -->
 <table class="table-bordered check-tbl mb-4">
   <tbody>
     <tr>
-      <td>Order Subtotal</td>
+      <td>Заказ</td>
       <td class="product-price" id="order-subtotal"></td>
     </tr>
     <tr>
-      <td>Shipping</td>
-      <td id="order-shipping">Free Shipping</td>
-    </tr>
-    <tr>
-      <td>Taxes</td>
+      <td>Доставка</td>
       <td class="product-price" id="order-taxes"></td>
     </tr>
     <tr>
-      <td>Total</td>
+      <td>Итого</td>
       <td class="product-price-total" id="order-total"></td>
     </tr>
   </tbody>
 </table>
 
-                  <h4 class="widget-title">Payment Method</h4>
-                  <div class="form-group m-b20">
+                  <h4 class="widget-title">Оплата</h4>
+                  <div class="paymentTransfer">
+                    <p class="paymentPtag">Оплата на карту СберБанк переводом по номеру:</p>
+                  <h1>"+7 903 073 92 35"</h1></div>
+                  <!-- <div class="form-group m-b20">
                     <input
                       type="text"
                       class="form-control"
@@ -713,14 +685,14 @@
                       placeholder="Card Verification Number"
                     />
                   </div>
-                  <div class="form-group">
+                  <div class="form-group"> -->
                     <!-- Place Order Button -->
 <button
   class="btn btn-gray btn-hover-2"
   type="button"
   id="place-order-btn"
 >
-  Place Order Now
+  Завершить Заказ
 </button>
 
 <!-- Invoice Print Button -->
@@ -730,7 +702,7 @@
   id="print-invoice-btn"
   style="display: none; margin-top: 10px;"
 >
-  Print Invoice
+  Напечатать Чек
 </button>
 
                   </div>

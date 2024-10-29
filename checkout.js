@@ -1,7 +1,8 @@
 // checkout.js
 const formatter = new Intl.NumberFormat("ru-RU", {
   style: "currency",
-  currency: "РУБ",
+  currency: "RUB",
+
 });
 // Function to load cart from localStorage
 function loadCartFromLocalStorage() {
@@ -145,7 +146,7 @@ function printInvoice() {
             window.location.origin
           }/assets/images/faviconMain/androidchrome192.png" alt="Logo">
         </div>
-        <h1>Счёт-фактура</h1>
+        <h1>Счёт</h1>
         <p><strong>Номер заказа:</strong> ${order.orderId}</p>
         <p><strong>Дата заказа:</strong> ${order.orderDate}</p>
         <h2>Информация о клиенте</h2>
@@ -153,14 +154,11 @@ function printInvoice() {
           ${order.customerInfo["dzFirstName"] || ""} ${
     order.customerInfo["dzLastName"] || ""
   }<br>
-          ${order.customerInfo["dzOther[Address]"] || ""}<br>
-          ${order.customerInfo["dzOther[Town/City]"] || ""}, ${
-    order.customerInfo["dzOther[State/County]"] || ""
-  } ${order.customerInfo["Postcode/Zip"] || ""}<br>
+          ${order.customerInfo["dzOther[Address]"] || ""}<br> ""}<br>
           ${order.customerInfo["dzEmail"] || ""}<br>
           ${order.customerInfo["dzPhoneNumber"] || ""}
         </p>
-        <h2>Сводка заказа</h2>
+        <h2>Заказ</h2>
         <table>
           <thead>
             <tr>
@@ -214,12 +212,11 @@ function printInvoice() {
   invoiceWindow.document.write(`
           </tbody>
         </table>
-        <p class="total"><strong>Промежуточный итог:</strong> ₽ ${subtotal.toFixed(
+        <p class="total"><strong>Итого:</strong> ₽ ${subtotal.toFixed(
           2
         )}</p>
-        <p class="total"><strong>Налоги:</strong> ₽ ${taxes.toFixed(2)}</p>
         <p class="total"><strong>Итого:</strong> ₽ ${total.toFixed(2)}</p>
-        <p>Спасибо за вашу покупку!</p>
+        <p>Спасибо за Ваш выбор!</p>
       </body>
     </html>
   `);
