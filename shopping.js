@@ -212,9 +212,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize the price range slider using the noUiSlider library.
   const slider = document.getElementById("slider-tooltips");
   noUiSlider.create(slider, {
-    start: [0, 1000], // Set initial slider range values.
+    start: [0, 3000], // Set initial slider range values.
     connect: true, // Connect the slider handles.
-    range: { min: 0, max: 1000 }, // Set the slider's minimum and maximum range.
+    range: { min: 0, max: 3000 }, // Set the slider's minimum and maximum range.
     tooltips: [true, true], // Show tooltips on both handles.
     format: {
       to: (value) => parseInt(value), // Convert the slider value to an integer when displaying it.

@@ -36,7 +36,7 @@ function renderOrderSummary(cart) {
         <img src="${item.imageUrl}" alt="${item.name}" width="50">
       </td>
       <td class="product-item-name">
-        ${item.name} ${item.addOns ? "(with add-ons)" : ""} x ${item.quantity}
+        ${item.name} ${item.addOns ? "(c добавками)" : ""} x ${item.quantity}
       </td>
       <td class="product-price">₽ ${itemTotal.toFixed(2)}</td>
     `;
