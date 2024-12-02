@@ -234,9 +234,9 @@ function printInvoice() {
         <td>${item.name}</td>
         <td>${addOnsText}</td>
         <td class="text-right">${item.quantity}</td>
-        <td class="text-right">₽ ${(item.price).toFixed(2)}</td>
-        <td class="text-right">₽ ${addOnsTotal.toFixed(2)}</td> 
-        <td class="text-right">₽ ${totalPrice.toFixed(2)}</td>
+        <td class="text-right">₽ ${(item.price)}</td>
+        <td class="text-right">₽ ${addOnsTotal}</td> 
+        <td class="text-right">₽ ${totalPrice}</td>
       </tr>
     `);
   });
