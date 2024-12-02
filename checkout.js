@@ -163,7 +163,7 @@ function printInvoice() {
         <title>Invoice - Order #${order.orderId}</title>
         <style>
           body { font-family: Arial, sans-serif; padding: 20px; }
-          h1 { text-align: center; font-size: 2rem; }
+          h1 { text-align: center; font-size: 3rem; }
           .logo { text-align: center; margin-bottom: 20px; }
           .logo img { max-width: 150px; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
@@ -172,7 +172,7 @@ function printInvoice() {
           .total { font-weight: bold; }
           .text-right { text-align: right; }
           .pInvoice {text-align: center; margin-top: 15px;}
-          .lastTable {width: 60%; margin: 0 auto;}
+          .lastTable {width: 40%; margin: 0 auto;}
           p {font-size: 1.5rem;}
         </style>
       </head>
@@ -258,7 +258,7 @@ function printInvoice() {
             <td class="text-right total">₽ ${total.toFixed(2)}</td>
           </tr>
         </table>
-        <p class="pInvoice">Спасибо за Ваш выбор!🌿🌼</p>
+        <p class="pInvoice">Спасибо за Ваш выбор! 🌿🌼</p>
       </body>
     </html>
   `);
