@@ -123,10 +123,10 @@ function generateMenuItems(menuArray) {
               <h5 class="title">${item.name}</h5>
               <p>${item.description}</p>
               <h5 class="price">₽ ${item.price}</h5>
-              <div class="addons">${addOnsHtml}</div>
-              <button class="btn btn-primary btn-hover-2" data-id="${item.id}">
+            
+              <a class="btn btn-primary btn-hover-2" href="product-detail.html?id=${item.id}">
                 В КОРЗИНУ
-              </button>
+              </a>
             </div>
           </div>
         </li>
