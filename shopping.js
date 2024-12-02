@@ -99,39 +99,40 @@ function handleCategoryFilter(selectedCategories) {
 function generateMenuItems(menuArray) {
   return menuArray
     .map((item) => {
-      const imageUrl = item.imageUrl || fallbackImageUrl; // Use the fallback image if no image URL is provided.
+      const imageUrl = item.imageUrl || fallbackImageUrl;
+
+      // Generate add-ons as checkboxes
+      const addOnsHtml = (item.addOns || [])
+        .map(
+          (addOn) => `
+          <label>
+            <input type="checkbox" data-id="${addOn.id}" data-price="${addOn.price}" data-name="${addOn.name}">
+            ${addOn.name} (+₽${addOn.price})
+          </label>
+        `
+        )
+        .join("");
+
       return `
         <li class="card-container col-xl-4 col-md-6 m-b30">
-        <a href="product-detail.html?id=${item.id}">  
-        <div class="dz-img-box style-7">
+          <div class="dz-img-box style-7">
             <div class="dz-media">
               <img src="${imageUrl}" alt="${item.name}" />
-              <div class="dz-meta">
-                <ul>
-                  <li class="seller">${item.category}</li>
-                  <li class="rating"><i class="fa-solid fa-weight"></i>${
-                    item.gramms
-                  } гр</li>
-                </ul>
-              </div>
             </div>
             <div class="dz-content">
-              <!-- Updated the href to include the product ID -->
-                        <h5 class="title"><a href="product-detail.html?id=${item.id}">${
-                  item.name
-                }</a></h5>
+              <h5 class="title">${item.name}</h5>
               <p>${item.description}</p>
-              <h5 class="price">₽ ${item.price ?? "N/A"}</h5>
-              <a href="javascript:void(0);" data-id="${
-                item.id
-              }" class="btn btn-primary btn-hover-2">В КОРЗИНУ</a>
+              <h5 class="price">₽ ${item.price}</h5>
+              <div class="addons">${addOnsHtml}</div>
+              <button class="btn btn-primary btn-hover-2" data-id="${item.id}">
+                В КОРЗИНУ
+              </button>
             </div>
           </div>
-          </a>
         </li>
       `;
     })
-    .join(""); // Join the array of HTML strings into a single string.
+    .join("");
 }
 
 // Function to filter products by price range.
@@ -171,14 +172,24 @@ function generateCategoryFilters(menuArray) {
 function handleAddToCartButtons() {
   document.querySelectorAll(".btn-hover-2").forEach((button) => {
     button.addEventListener("click", (e) => {
-      const itemId = parseInt(e.target.dataset.id); // Get the item ID
-      const item = filteredMenu.find((menuItem) => menuItem.id === itemId); // Find the item
+      const itemId = parseInt(e.target.dataset.id);
+      const item = filteredMenu.find((menuItem) => menuItem.id === itemId);
+
       if (item) {
-        addToCart({ ...item, quantity: 1 }); // Ensure quantity is passed
+        const selectedAddOns = Array.from(
+          e.target.closest(".dz-content").querySelectorAll("input[type='checkbox']:checked")
+        ).map((checkbox) => ({
+          id: checkbox.dataset.id,
+          name: checkbox.dataset.name,
+          price: parseInt(checkbox.dataset.price, 10),
+        }));
+
+        addToCart({ ...item, addOns: selectedAddOns });
       }
     });
   });
 }
+
 
 
 // Function to render the initial filters and display the products on page load.
