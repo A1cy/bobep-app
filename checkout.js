@@ -222,7 +222,7 @@ function printInvoice() {
     } else {
       addOnsText = "Нет";
     }
-
+// 
     // Include add-ons price in item total
     const totalPrice = (item.price + addOnsTotal) * item.quantity;
 
@@ -232,6 +232,7 @@ function printInvoice() {
         <td>${addOnsText}</td>
         <td class="text-right">${item.quantity}</td>
         <td class="text-right">₽ ${(item.price + addOnsTotal).toFixed(2)}</td>
+        <td class="text-right">₽ ${addOnsTotal.toFixed(2)}</td> 
         <td class="text-right">₽ ${totalPrice.toFixed(2)}</td>
       </tr>
     `);
@@ -240,7 +241,7 @@ function printInvoice() {
   invoiceWindow.document.write(`
           </tbody>
         </table>
-        <table>
+        <table id="lastTable">
           <tr>
             <td>Подытог:</td>
             <td class="text-right">₽ ${subtotal.toFixed(2)}</td>
@@ -254,7 +255,7 @@ function printInvoice() {
             <td class="text-right total">₽ ${total.toFixed(2)}</td>
           </tr>
         </table>
-        <p>Спасибо за Ваш выбор!</p>
+        <p class="pInvoice">Спасибо за Ваш выбор!🌿🌼</p>
       </body>
     </html>
   `);

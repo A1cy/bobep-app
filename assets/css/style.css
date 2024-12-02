@@ -33530,3 +33530,10 @@ textarea::placeholder {
 
   color: black !important;
 }
+.pInvoice{
+  text-align:center;
+  padding: 15px;
+}
+#lastTable{
+width: 60%;
+}
