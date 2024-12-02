@@ -180,7 +180,7 @@ function printInvoice() {
           }/assets/images/faviconMain/androidchrome192.png" alt="Logo">
         </div>
         <h1>Счёт</h1>
-        <p><strong>Номер заказа:</strong> ${order.orderId}</p>
+        <p><strong>Номер заказа:${order.orderId}</strong></p>
         <p><strong>Дата заказа:</strong> ${order.orderDate}</p>
         <h2>Информация о клиенте</h2>
         <p>
@@ -199,6 +199,7 @@ function printInvoice() {
               <th>Дополнения</th>
               <th>Количество</th>
               <th>Цена</th>
+              <th>Цена дополнений</th>
               <th>Всего</th>
             </tr>
           </thead>
