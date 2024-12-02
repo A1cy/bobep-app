@@ -127,7 +127,7 @@ function generateMenuItems(menuArray) {
               <h5 class="price">₽ ${item.price}</h5>
             
               <a class="btn btn-primary btn-hover-2" href="product-detail.html?id=${item.id}">
-                В КОРЗИНУ
+                ДЕТАЛИ БЛЮДА
               </a>
             </div>
           </div>

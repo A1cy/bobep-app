@@ -33526,3 +33526,7 @@ textarea::placeholder {
   object-fit: contain; /* Ensure the image fits within its container */
   display: block; /* Prevent extra spacing */
 }
+.dz-img-box.style-7 .dz-content p {
+
+  color: black !important;
+}
