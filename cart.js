@@ -17,10 +17,17 @@ function loadCartFromLocalStorage() {
   }
 }
 
-// Function to add an item to the cart
 function addToCart(item) {
   // Ensure the item has a valid quantity
   item.quantity = item.quantity || 1;
+
+  // Calculate the total price of add-ons
+  const addOnsTotalPrice = (item.addOns || []).reduce((total, addOn) => {
+    return total + (addOn.price || 0);
+  }, 0);
+
+  // Calculate the full price including add-ons
+  item.totalPrice = item.price + addOnsTotalPrice;
 
   // Check if the item is already in the cart
   const existingItem = cart.find(
@@ -83,8 +90,12 @@ function updateCartUI() {
   // Calculate the total number of items and the total price
   const cartItemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const cartTotal = cart.reduce((acc, item) => {
-    const validPrice = isNaN(item.price) ? 0 : item.price; // Default invalid prices to 0
-    return acc + item.quantity * validPrice;
+    const addOnsTotal = (item.addOns || []).reduce((total, addOn) => {
+      return total + (addOn.price || 0);
+    }, 0);
+  
+    const itemTotal = (item.price + addOnsTotal) * item.quantity;
+    return acc + itemTotal;
   }, 0);
   
 

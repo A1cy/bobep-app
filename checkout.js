@@ -37,9 +37,16 @@ function renderOrderSummary(cart) {
   let subtotal = 0;
 
   cart.forEach((item) => {
-    const validPrice = isNaN(item.price) ? 0 : item.price; // Validate price
-    const itemTotal = validPrice * item.quantity;
+    const addOnsTotal = (item.addOns || []).reduce((total, addOn) => {
+      return total + (addOn.price || 0);
+    }, 0);
+
+    const itemTotal = (item.price + addOnsTotal) * item.quantity;
     subtotal += itemTotal;
+
+    const addOnsText = (item.addOns || [])
+      .map((addOn) => `${addOn.name} (₽${addOn.price})`)
+      .join(", ");
 
     const row = document.createElement("tr");
 
@@ -48,7 +55,8 @@ function renderOrderSummary(cart) {
         <img src="${item.imageUrl}" alt="${item.name}" width="50">
       </td>
       <td class="product-item-name">
-        ${item.name} x ${item.quantity}
+        ${item.name} x ${item.quantity}<br>
+        <small>Add-ons: ${addOnsText || "None"}</small>
       </td>
       <td class="product-price">₽ ${itemTotal.toFixed(2)}</td>
     `;
@@ -56,7 +64,7 @@ function renderOrderSummary(cart) {
     orderSummaryBody.appendChild(row);
   });
 
-  // Calculate and display totals
+  // Calculate delivery fee and total
   const deliveryFee = calculateDeliveryFee(subtotal);
   const total = subtotal + deliveryFee;
 

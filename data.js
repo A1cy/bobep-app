@@ -85,26 +85,7 @@ export const menuArray = [
       { label: "Время", value: "20-35 минут" },
     ],
   },
-  // Add more products as needed
-
-  // {
-  //   id: 1,
-  //   category: "Пицца",
-  //   name: "ДЕРЕВЕНСКАЯ",
-  //   description: "САЛЯМИ, МОЦАРЕЛЛА, КОРНИШОНЫ, ЛУК КРАСНЫЙ, КУРИЦА КОПЧЁНАЯ",
-  //   price: 480,
-  //   imageUrl: "assets/1MENUImages/1-деревенская.jpg",
-  //   gramms: "400",
-  // },
-  // {
-  //   id: 2,
-  //   category: "Пицца",
-  //   name: "ПЕПЕРОННИ",
-  //   description: "МОЦАРЕЛЛА, ПОМИДОРЫ, САЛЯМИ ",
-  //   price: 500,
-  //   imageUrl: "assets/1MENUImages/3-пеперонни.png",
-  //   gramms: "400",
-  // },
+   
   {
     id: 3,
     category: "Пицца",
