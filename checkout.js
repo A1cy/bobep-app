@@ -14,10 +14,20 @@ function loadCartFromLocalStorage() {
   }
 }
 
-// Function to render the order summary
+function calculateDeliveryFee(subtotal) {
+  if (subtotal >= 3000) {
+    return 0; // Free delivery for orders 3000 ₽ and above
+  } else if (subtotal >= 2500) {
+    return 75; // Delivery fee of 75 ₽ for orders between 2500 and 2999 ₽
+  } else if (subtotal >= 2000) {
+    return 100; // Delivery fee of 100 ₽ for orders between 2000 and 2499 ₽
+  } else {
+    return 150; // Base delivery fee for orders below 2000 ₽
+  }
+}
+
 function renderOrderSummary(cart) {
   const orderSummaryBody = document.getElementById("order-summary");
-
   if (!orderSummaryBody) return;
 
   // Clear existing content
@@ -44,15 +54,17 @@ function renderOrderSummary(cart) {
     orderSummaryBody.appendChild(row);
   });
 
-  // Calculate taxes and total
-  const taxes = subtotal * 0.1; // Assuming 10% tax rate
-  const total = subtotal + taxes;
+  // Calculate delivery fee and total
+  const deliveryFee = calculateDeliveryFee(subtotal);
+  const total = subtotal + deliveryFee;
 
   // Update the totals in the table
   document.getElementById("order-subtotal").textContent = `₽ ${subtotal.toFixed(
     2
   )}`;
-  document.getElementById("order-taxes").textContent = `₽ ${taxes.toFixed(2)}`;
+  document.getElementById(
+    "order-delivery-fee"
+  ).textContent = `₽ ${deliveryFee.toFixed(2)}`;
   document.getElementById("order-total").textContent = `₽ ${total.toFixed(2)}`;
 }
 
@@ -106,7 +118,8 @@ function generateOrderId() {
   return Math.floor(Math.random() * 1000000);
 }
 
-// Function to print the invoice
+ 
+
 function printInvoice() {
   const orderData = localStorage.getItem("lastOrder");
   if (!orderData) {
@@ -115,6 +128,16 @@ function printInvoice() {
   }
 
   const order = JSON.parse(orderData);
+
+  // Calculate subtotal
+  let subtotal = 0;
+  order.cart.forEach((item) => {
+    subtotal += item.price * item.quantity;
+  });
+
+  // Calculate delivery fee
+  const deliveryFee = calculateDeliveryFee(subtotal);
+  const total = subtotal + deliveryFee;
 
   // Create a new window for the invoice
   const invoiceWindow = window.open(
@@ -154,7 +177,7 @@ function printInvoice() {
           ${order.customerInfo["dzFirstName"] || ""} ${
     order.customerInfo["dzLastName"] || ""
   }<br>
-          ${order.customerInfo["dzOther[Address]"] || ""}<br> ""}<br>
+          ${order.customerInfo["dzOther[Address]"] || ""}<br>
           ${order.customerInfo["dzEmail"] || ""}<br>
           ${order.customerInfo["dzPhoneNumber"] || ""}
         </p>
@@ -172,11 +195,8 @@ function printInvoice() {
           <tbody>
   `);
 
-  let subtotal = 0;
-
   order.cart.forEach((item) => {
     const itemTotal = item.price * item.quantity;
-    subtotal += itemTotal;
 
     // Calculate add-ons total
     let addOnsTotal = 0;
@@ -206,16 +226,23 @@ function printInvoice() {
     `);
   });
 
-  const taxes = subtotal * 0.1; // Assuming 10% tax rate
-  const total = subtotal + taxes;
-
   invoiceWindow.document.write(`
           </tbody>
         </table>
-        <p class="total"><strong>Итого:</strong> ₽ ${subtotal.toFixed(
-          2
-        )}</p>
-        <p class="total"><strong>Итого:</strong> ₽ ${total.toFixed(2)}</p>
+        <table>
+          <tr>
+            <td>Подытог:</td>
+            <td class="text-right">₽ ${subtotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>Стоимость доставки:</td>
+            <td class="text-right">₽ ${deliveryFee.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td class="total">Итого:</td>
+            <td class="text-right total">₽ ${total.toFixed(2)}</td>
+          </tr>
+        </table>
         <p>Спасибо за Ваш выбор!</p>
       </body>
     </html>
@@ -225,6 +252,7 @@ function printInvoice() {
   invoiceWindow.focus();
   invoiceWindow.print();
 }
+
 
 // Event listener for "Place Order Now" button
 document
