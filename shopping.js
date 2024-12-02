@@ -102,7 +102,8 @@ function generateMenuItems(menuArray) {
       const imageUrl = item.imageUrl || fallbackImageUrl; // Use the fallback image if no image URL is provided.
       return `
         <li class="card-container col-xl-4 col-md-6 m-b30">
-          <div class="dz-img-box style-7">
+        <a href="product-detail.html?id=${item.id}">  
+        <div class="dz-img-box style-7">
             <div class="dz-media">
               <img src="${imageUrl}" alt="${item.name}" />
               <div class="dz-meta">
@@ -116,9 +117,9 @@ function generateMenuItems(menuArray) {
             </div>
             <div class="dz-content">
               <!-- Updated the href to include the product ID -->
-              <h5 class="title"><a href="product-detail.html?id=${item.id}">${
-        item.name
-      }</a></h5>
+                        <h5 class="title"><a href="product-detail.html?id=${item.id}">${
+                  item.name
+                }</a></h5>
               <p>${item.description}</p>
               <h5 class="price">₽ ${item.price ?? "N/A"}</h5>
               <a href="javascript:void(0);" data-id="${
@@ -126,6 +127,7 @@ function generateMenuItems(menuArray) {
               }" class="btn btn-primary btn-hover-2">В КОРЗИНУ</a>
             </div>
           </div>
+          </a>
         </li>
       `;
     })
