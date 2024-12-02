@@ -167,10 +167,13 @@ function printInvoice() {
           .logo { text-align: center; margin-bottom: 20px; }
           .logo img { max-width: 150px; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-          table, th, td { border: 1px solid #000; }
+          table, th, td { border: 2px solid #000; }
           th, td { padding: 8px; text-align: left; }
           .total { font-weight: bold; }
           .text-right { text-align: right; }
+          .pInvoice {text-align: center; margin-top: 15px;}
+          .lastTable {width: 80%; align-itself: center;}
+          p {font-size: 1.5rem;}
         </style>
       </head>
       <body>
@@ -231,7 +234,7 @@ function printInvoice() {
         <td>${item.name}</td>
         <td>${addOnsText}</td>
         <td class="text-right">${item.quantity}</td>
-        <td class="text-right">₽ ${(item.price + addOnsTotal).toFixed(2)}</td>
+        <td class="text-right">₽ ${(item.price).toFixed(2)}</td>
         <td class="text-right">₽ ${addOnsTotal.toFixed(2)}</td> 
         <td class="text-right">₽ ${totalPrice.toFixed(2)}</td>
       </tr>
@@ -241,7 +244,7 @@ function printInvoice() {
   invoiceWindow.document.write(`
           </tbody>
         </table>
-        <table id="lastTable">
+        <table class="lastTable">
           <tr>
             <td>Подытог:</td>
             <td class="text-right">₽ ${subtotal.toFixed(2)}</td>
