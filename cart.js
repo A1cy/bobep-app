@@ -19,6 +19,9 @@ function loadCartFromLocalStorage() {
 
 // Function to add an item to the cart
 function addToCart(item) {
+  // Ensure the item has a valid quantity
+  item.quantity = item.quantity || 1;
+
   // Check if the item is already in the cart
   const existingItem = cart.find(
     (cartItem) =>
@@ -27,7 +30,7 @@ function addToCart(item) {
   );
 
   if (existingItem) {
-    // If the item is already in the cart with the same add-ons, increase its quantity
+    // If the item is already in the cart, increase its quantity
     existingItem.quantity += item.quantity;
   } else {
     // If the item is not in the cart, add it with a unique UUID
@@ -37,9 +40,10 @@ function addToCart(item) {
   // Save the updated cart to localStorage
   saveCartToLocalStorage();
 
-  // Update the cart UI to reflect the changes
+  // Update the cart UI
   updateCartUI();
 }
+
 
 // Function to remove an item from the cart
 function removeFromCart(itemId) {
@@ -78,10 +82,11 @@ function updateCartUI() {
 
   // Calculate the total number of items and the total price
   const cartItemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-  const cartTotal = cart.reduce(
-    (acc, item) => acc + item.quantity * item.price,
-    0
-  );
+  const cartTotal = cart.reduce((acc, item) => {
+    const validPrice = isNaN(item.price) ? 0 : item.price; // Default invalid prices to 0
+    return acc + item.quantity * validPrice;
+  }, 0);
+  
 
   // Update the item count displayed in the header
   const cartBtnBadge = document.querySelector(".cart-btn .badge");

@@ -169,12 +169,15 @@ function generateCategoryFilters(menuArray) {
 function handleAddToCartButtons() {
   document.querySelectorAll(".btn-hover-2").forEach((button) => {
     button.addEventListener("click", (e) => {
-      const itemId = parseInt(e.target.dataset.id); // Get the ID of the item to add.
-      const item = filteredMenu.find((menuItem) => menuItem.id === itemId); // Find the corresponding item in the filtered menu.
-      addToCart(item); // Add the item to the cart.
+      const itemId = parseInt(e.target.dataset.id); // Get the item ID
+      const item = filteredMenu.find((menuItem) => menuItem.id === itemId); // Find the item
+      if (item) {
+        addToCart({ ...item, quantity: 1 }); // Ensure quantity is passed
+      }
     });
   });
 }
+
 
 // Function to render the initial filters and display the products on page load.
 function render() {

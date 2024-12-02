@@ -28,6 +28,7 @@ function calculateDeliveryFee(subtotal) {
 
 function renderOrderSummary(cart) {
   const orderSummaryBody = document.getElementById("order-summary");
+
   if (!orderSummaryBody) return;
 
   // Clear existing content
@@ -36,7 +37,8 @@ function renderOrderSummary(cart) {
   let subtotal = 0;
 
   cart.forEach((item) => {
-    const itemTotal = item.price * item.quantity;
+    const validPrice = isNaN(item.price) ? 0 : item.price; // Validate price
+    const itemTotal = validPrice * item.quantity;
     subtotal += itemTotal;
 
     const row = document.createElement("tr");
@@ -46,7 +48,7 @@ function renderOrderSummary(cart) {
         <img src="${item.imageUrl}" alt="${item.name}" width="50">
       </td>
       <td class="product-item-name">
-        ${item.name} ${item.addOns ? "(c добавками)" : ""} x ${item.quantity}
+        ${item.name} x ${item.quantity}
       </td>
       <td class="product-price">₽ ${itemTotal.toFixed(2)}</td>
     `;
@@ -54,11 +56,10 @@ function renderOrderSummary(cart) {
     orderSummaryBody.appendChild(row);
   });
 
-  // Calculate delivery fee and total
+  // Calculate and display totals
   const deliveryFee = calculateDeliveryFee(subtotal);
   const total = subtotal + deliveryFee;
 
-  // Update the totals in the table
   document.getElementById("order-subtotal").textContent = `₽ ${subtotal.toFixed(
     2
   )}`;
@@ -67,6 +68,7 @@ function renderOrderSummary(cart) {
   ).textContent = `₽ ${deliveryFee.toFixed(2)}`;
   document.getElementById("order-total").textContent = `₽ ${total.toFixed(2)}`;
 }
+
 
 // Function to handle form submission
 function handlePlaceOrder(event) {
@@ -142,7 +144,7 @@ function printInvoice() {
   // Create a new window for the invoice
   const invoiceWindow = window.open(
     "",
-    "Print Invoice",
+    "Распечатать счет-фактуру",
     "height=800,width=600"
   );
 
