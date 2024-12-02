@@ -202,7 +202,7 @@ function printInvoice() {
               <th>Дополнения</th>
               <th>Кол-во</th>
               <th>Цена</th>
-              <th>Цена дополнений</th>
+              <th>Цена добавок</th>
               <th>Всего</th>
             </tr>
           </thead>
