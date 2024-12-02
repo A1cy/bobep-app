@@ -152,7 +152,7 @@ function printInvoice() {
   // Create a new window for the invoice
   const invoiceWindow = window.open(
     "",
-    "Распечатать счет-фактуру",
+    "Распечатать Счёт",
     "height=800,width=600"
   );
 
@@ -163,7 +163,7 @@ function printInvoice() {
         <title>Invoice - Order #${order.orderId}</title>
         <style>
           body { font-family: Arial, sans-serif; padding: 20px; }
-          h1 { text-align: center; }
+          h1 { text-align: center; font-size: 2rem; }
           .logo { text-align: center; margin-bottom: 20px; }
           .logo img { max-width: 150px; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
@@ -172,7 +172,7 @@ function printInvoice() {
           .total { font-weight: bold; }
           .text-right { text-align: right; }
           .pInvoice {text-align: center; margin-top: 15px;}
-          .lastTable {width: 80%; align-itself: center;}
+          .lastTable {width: 60%; margin: 0 auto;}
           p {font-size: 1.5rem;}
         </style>
       </head>
@@ -183,7 +183,7 @@ function printInvoice() {
           }/assets/images/faviconMain/androidchrome192.png" alt="Logo">
         </div>
         <h1>Счёт</h1>
-        <p><strong>Номер заказа:${order.orderId}</strong></p>
+        <p><strong>Номер заказа: ${order.orderId}</strong></p>
         <p><strong>Дата заказа:</strong> ${order.orderDate}</p>
         <h2>Информация о клиенте</h2>
         <p>
