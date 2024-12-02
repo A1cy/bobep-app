@@ -115,7 +115,9 @@ function generateMenuItems(menuArray) {
 
       return `
         <li class="card-container col-xl-4 col-md-6 m-b30">
-          <div class="dz-img-box style-7">
+                       <a  href="product-detail.html?id=${item.id}">
+
+        <div class="dz-img-box style-7">
             <div class="dz-media">
               <img src="${imageUrl}" alt="${item.name}" />
             </div>
@@ -129,6 +131,8 @@ function generateMenuItems(menuArray) {
               </a>
             </div>
           </div>
+                        </a>
+
         </li>
       `;
     })
