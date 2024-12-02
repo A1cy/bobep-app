@@ -4688,7 +4688,9 @@ fieldset:disabled .wp-block-button__link {
   }
   .navbar-expand-lg .navbar-collapse {
     display: flex !important;
+    display: none  !important;
     flex-basis: auto;
+
   }
   .navbar-expand-lg .navbar-toggler {
     display: none;
