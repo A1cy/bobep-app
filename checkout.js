@@ -200,10 +200,10 @@ function printInvoice() {
             <tr>
               <th>Продукт</th>
               <th>Дополнения</th>
-              <th>Кол-во</th>
+              <th>Колво</th>
               <th>Цена</th>
               <th>Цена добавок</th>
-              <th>Всего</th>
+              <th>Цена общая</th>
             </tr>
           </thead>
           <tbody>
