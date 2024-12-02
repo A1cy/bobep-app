@@ -22,7 +22,7 @@ function calculateDeliveryFee(subtotal) {
   } else if (subtotal >= 2000) {
     return 100; // Delivery fee of 100 ₽ for orders between 2000 and 2499 ₽
   } else {
-    return 150; // Base delivery fee for orders below 2000 ₽
+    return 200; // Base delivery fee for orders below 2000 ₽
   }
 }
 
@@ -73,7 +73,7 @@ function renderOrderSummary(cart) {
   )}`;
   document.getElementById(
     "order-delivery-fee"
-  ).textContent = `₽ ${deliveryFee.toFixed(2)}`;
+  ).textContent = `₽ ${deliveryFee.toFixed(0)}`;
   document.getElementById("order-total").textContent = `₽ ${total.toFixed(2)}`;
 }
 
@@ -203,7 +203,7 @@ function printInvoice() {
               <th>Количество</th>
               <th>Цена</th>
               <th>Цена дополнений</th>
-              <th>Всего</th>
+              <th> ‎‎ Всего ‎‎ </th>
             </tr>
           </thead>
           <tbody>
