@@ -172,7 +172,7 @@ function printInvoice() {
           .total { font-weight: bold; }
           .text-right { text-align: right; }
           .pInvoice {text-align: center; margin-top: 15px;}
-          .lastTable {width: 40%; margin: 0 auto;}
+          .lastTable {width: 30%; margin: 0 auto;}
           p {font-size: 1.5rem;}
         </style>
       </head>
@@ -258,7 +258,7 @@ function printInvoice() {
             <td class="text-right total">₽ ${total.toFixed(2)}</td>
           </tr>
         </table>
-        <p class="pInvoice">Спасибо за Ваш выбор! 🌿🌼</p>
+        <p class="pInvoice">🌼🌿 Спасибо за Ваш выбор! 🌿🌼</p>
       </body>
     </html>
   `);
