@@ -33505,4 +33505,24 @@ textarea::placeholder {
     margin-top: 0px;
   }
 }
- ⁠
+
+
+.paymentNumber{
+  margin-bottom: 20px !important;
+  /* padding-bottom: 40px !important; */
+}
+
+.firstLogo, .firstLogo2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 60px; /* Limit the width of the logo */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.firstLogo img, .firstLogo2 img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain; /* Ensure the image fits within its container */
+  display: block; /* Prevent extra spacing */
+}
