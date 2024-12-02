@@ -219,7 +219,7 @@ function printInvoice() {
       addOnsText = item.addOns
         .map((addOn) => {
           addOnsTotal += addOn.price;
-          return `${addOn.name} (₽${addOn.price.toFixed(2)})`;
+          return `${addOn.name} (₽${addOn.price.toFixed(0)})`;
         })
         .join(", ");
     } else {
@@ -236,7 +236,7 @@ function printInvoice() {
         <td class="text-right">${item.quantity}</td>
         <td class="text-right">₽ ${(item.price).toFixed(0)}</td>
         <td class="text-right">₽ ${addOnsTotal.toFixed(0)}</td> 
-        <td class="text-right">₽ ${totalPrice}</td>
+        <td class="text-right">₽ ${totalPrice.toFixed(0)}</td>
       </tr>
     `);
   });
@@ -247,15 +247,15 @@ function printInvoice() {
         <table class="lastTable">
           <tr>
             <td>Подытог:</td>
-            <td class="text-right">₽ ${subtotal.toFixed(2)}</td>
+            <td class="text-right">₽ ${subtotal.toFixed(0)}</td>
           </tr>
           <tr>
             <td>Стоимость доставки:</td>
-            <td class="text-right">₽ ${deliveryFee.toFixed(2)}</td>
+            <td class="text-right">₽ ${deliveryFee.toFixed(0)}</td>
           </tr>
           <tr>
             <td class="total">Итого:</td>
-            <td class="text-right total">₽ ${total.toFixed(2)}</td>
+            <td class="text-right total">₽ ${total.toFixed(0)}</td>
           </tr>
         </table>
         <p class="pInvoice">🌼🌿 Спасибо за Ваш выбор! 🌿🌼</p>
