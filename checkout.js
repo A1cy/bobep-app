@@ -56,7 +56,7 @@ function renderOrderSummary(cart) {
       </td>
       <td class="product-item-name">
         ${item.name} x ${item.quantity}<br>
-        <small>Add-ons: ${addOnsText || "None"}</small>
+        <small>Дополнения: ${addOnsText || "None"}</small>
       </td>
       <td class="product-price">₽ ${itemTotal.toFixed(2)}</td>
     `;

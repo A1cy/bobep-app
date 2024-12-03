@@ -4,7 +4,7 @@ export const menuArray = [
     category: "Пицца", // Category of the product
     name: "ДЕРЕВЕНСКАЯ", // Name of the product
     description:
-      "Ароматная пицца с салями, моцареллой, солеными огурцами, красным луком и копченой курицей. Идеально подходит для тех, кто любит сочетание дымных и острых вкусов.", // Detailed description
+      "Ароматная пицца с салями, моцареллой, солеными огурцами, красным луком и копченой курицей.", // Detailed description
     price: 480, // Price in rubles
     imageUrl: "assets/1MENUImages/1-деревенская.jpg", // Image URL of the product
     gramms: "400", // Weight in grams
@@ -48,7 +48,7 @@ export const menuArray = [
     category: "Пицца",
     name: "ПЕПЕРОННИ",
     description:
-      "A classic pizza with mozzarella cheese, fresh tomatoes, and premium salami. A timeless choice for pizza enthusiasts.",
+      "Классическая пицца с сыром моцарелла, свежими помидорами и салями.",
     price: 500,
     imageUrl: "assets/1MENUImages/3-пеперонни.png",
     gramms: "400",

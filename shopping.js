@@ -42,28 +42,74 @@ function updateTotalItemsCount(count) {
     ".filter-item-show"
   ).innerText = `Поиск: ${count} прод.`;
 }
-
+// OLD CODE OF HADI HERE STARTS
 // Function to update pagination controls based on the number of pages.
+// function updatePaginationControls() {
+//   const totalPages = Math.ceil(filteredMenu.length / itemsPerPage); // Calculate total pages.
+
+//   // Generate pagination buttons for each page.
+//   const paginationHtml = Array.from(
+//     { length: totalPages },
+//     (_, index) => `
+//       <li class="${index + 1 === currentPage ? "active" : ""}">
+//         <a href="javascript:void(0);" class="pagination-link" data-page="${
+//           index + 1
+//         }">
+//           ${index + 1}
+//         </a>
+//       </li>
+//     `
+//   ).join("");
+
+//   // Insert the pagination buttons into the DOM.
+//   document.querySelector(".pagination").innerHTML = paginationHtml;
+// }
+// OLD CODE OF HADI ENDS HERE
+
+//NEW CODE OF KRIS STARTS HERE, its works and looks good but when click '10' all buttons dissapear idk why
 function updatePaginationControls() {
   const totalPages = Math.ceil(filteredMenu.length / itemsPerPage); // Calculate total pages.
 
-  // Generate pagination buttons for each page.
-  const paginationHtml = Array.from(
-    { length: totalPages },
-    (_, index) => `
-      <li class="${index + 1 === currentPage ? "active" : ""}">
-        <a href="javascript:void(0);" class="pagination-link" data-page="${
-          index + 1
-        }">
-          ${index + 1}
-        </a>
-      </li>
-    `
-  ).join("");
+  // Pagination range display logic
+  const rangeStart = Math.max(currentPage - 2, 1);
+  const rangeEnd = Math.min(currentPage + 2, totalPages);
+
+  let paginationHtml = '';
+
+  // Previous button
+  if (currentPage > 1) {
+    paginationHtml += `<li><a href="javascript:void(0);" class="pagination-link" data-page="${currentPage - 1}">←</a></li>`;
+  }
+
+  // First page link
+  if (rangeStart > 1) {
+    paginationHtml += `<li><a href="javascript:void(0);" class="pagination-link" data-page="1">1</a></li>`;
+    if (rangeStart > 2) paginationHtml += `<li>...</li>`; // Add ellipsis if needed
+  }
+
+  // Page links in range
+  for (let i = rangeStart; i <= rangeEnd; i++) {
+    paginationHtml += `<li class="${i === currentPage ? "active" : ""}">
+      <a href="javascript:void(0);" class="pagination-link" data-page="${i}">${i}</a>
+    </li>`;
+  }
+
+  // Last page link
+  if (rangeEnd < totalPages) {
+    if (rangeEnd < totalPages - 1) paginationHtml += `<li>...</li>`; // Add ellipsis if needed
+    paginationHtml += `<li><a href="javascript:void(0);" class="pagination-link" data-page="${totalPages}">${totalPages}</a></li>`;
+  }
+
+  // Next button
+  if (currentPage < totalPages) {
+    paginationHtml += `<li><a href="javascript:void(0);" class="pagination-link" data-page="${currentPage + 1}">→</a></li>`;
+  }
 
   // Insert the pagination buttons into the DOM.
   document.querySelector(".pagination").innerHTML = paginationHtml;
 }
+//NEW CODE OF KRIS ENDS HERE
+
 
 // Function to handle search functionality and filter products based on the search query.
 function handleSearch(query) {
@@ -232,9 +278,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize the price range slider using the noUiSlider library.
   const slider = document.getElementById("slider-tooltips");
   noUiSlider.create(slider, {
-    start: [0, 3000], // Set initial slider range values.
+    start: [0, 4000], // Set initial slider range values.
     connect: true, // Connect the slider handles.
-    range: { min: 0, max: 3000 }, // Set the slider's minimum and maximum range.
+    range: { min: 0, max: 4000 }, // Set the slider's minimum and maximum range.
     tooltips: [true, true], // Show tooltips on both handles.
     format: {
       to: (value) => parseInt(value), // Convert the slider value to an integer when displaying it.
