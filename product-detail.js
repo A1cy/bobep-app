@@ -94,6 +94,10 @@ function renderProductDetails(product) {
             <p class="title">${addOn.name}</p>
             <div class="form-check search-content">
               <input class="form-check-input add-on-checkbox" type="checkbox" value="${addOn.id}" data-price="${addOn.price}" data-name="${addOn.name}" data-image="${addOn.imageUrl}">
+              <label for="add-on-${addOn.id}">₽${addOn.price}</label>
+            </div>
+            <div class="btn-quantity style-1 m-t5">
+              <input id="addon-quantity-${addOn.id}" type="number" value="1" min="1" disabled>
             </div>
           </div>
         </div>
@@ -102,6 +106,20 @@ function renderProductDetails(product) {
       )
       .join("");
   }
+  
+  // Add event listener to enable/disable quantity input when checkbox is toggled
+  document.querySelectorAll(".add-on-checkbox").forEach((checkbox) => {
+    checkbox.addEventListener("change", (e) => {
+      const quantityInput = document.getElementById(
+        `addon-quantity-${checkbox.value}`
+      );
+      quantityInput.disabled = !checkbox.checked;
+      if (!checkbox.checked) {
+        quantityInput.value = 1; // Reset quantity if unchecked
+      }
+    });
+  });
+  
 
   // Render Additional Information
   const additionalInfoTable = document.getElementById("additional-info-table");
@@ -171,15 +189,21 @@ function addProductToCart(product) {
   // Clone the product object to avoid modifying the original
   const productToAdd = { ...product, quantity };
 
-  // Get selected add-ons
+  // Get selected add-ons with quantities
   const selectedAddOns = Array.from(
     document.querySelectorAll(".add-on-checkbox:checked")
-  ).map((checkbox) => ({
-    id: checkbox.value,
-    name: checkbox.dataset.name,
-    price: parseFloat(checkbox.dataset.price),
-    imageUrl: checkbox.dataset.image,
-  }));
+  ).map((checkbox) => {
+    const quantity = parseInt(
+      document.getElementById(`addon-quantity-${checkbox.value}`).value
+    );
+    return {
+      id: checkbox.value,
+      name: checkbox.dataset.name,
+      price: parseFloat(checkbox.dataset.price),
+      quantity: quantity,
+      imageUrl: checkbox.dataset.image,
+    };
+  });
 
   // If there are add-ons, add them to the product
   if (selectedAddOns.length > 0) {
@@ -189,3 +213,4 @@ function addProductToCart(product) {
   // Add the product to the cart
   addToCart(productToAdd);
 }
+

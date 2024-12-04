@@ -38,31 +38,35 @@ function renderOrderSummary(cart) {
 
   cart.forEach((item) => {
     const addOnsTotal = (item.addOns || []).reduce((total, addOn) => {
-      return total + (addOn.price || 0);
+      return total + (addOn.price * (addOn.quantity || 1)); // Include add-on quantity
     }, 0);
-
-    const itemTotal = (item.price + addOnsTotal) * item.quantity;
+  
+    const itemTotal = (item.price + addOnsTotal) * item.quantity; // Item total with add-ons
     subtotal += itemTotal;
-
+  
     const addOnsText = (item.addOns || [])
-      .map((addOn) => `${addOn.name} (₽${addOn.price})`)
+      .map(
+        (addOn) =>
+          `${addOn.name} (x${addOn.quantity || 1}) - ₽${(
+            addOn.price * (addOn.quantity || 1)
+          ).toFixed(2)}`
+      )
       .join(", ");
-
+  
     const row = document.createElement("tr");
-
     row.innerHTML = `
       <td class="product-item-img">
         <img src="${item.imageUrl}" alt="${item.name}" width="50">
       </td>
       <td class="product-item-name">
         ${item.name} x ${item.quantity}<br>
-        <small>Дополнения: ${addOnsText || "None"}</small>
+        <small>Дополнения: ${addOnsText || "Нет"}</small>
       </td>
       <td class="product-price">₽ ${itemTotal.toFixed(2)}</td>
     `;
-
     orderSummaryBody.appendChild(row);
   });
+  
 
   // Calculate delivery fee and total
   const deliveryFee = calculateDeliveryFee(subtotal);
@@ -210,36 +214,33 @@ function printInvoice() {
   `);
 
   order.cart.forEach((item) => {
-    const itemTotal = item.price * item.quantity;
-
-    // Calculate add-ons total
-    let addOnsTotal = 0;
-    let addOnsText = "";
-    if (item.addOns && item.addOns.length > 0) {
-      addOnsText = item.addOns
-        .map((addOn) => {
-          addOnsTotal += addOn.price;
-          return `${addOn.name} (₽${addOn.price.toFixed(0)})`;
-        })
-        .join(", ");
-    } else {
-      addOnsText = "Нет";
-    }
-// 
-    // Include add-ons price in item total
-    const totalPrice = (item.price + addOnsTotal) * item.quantity;
-
+    const addOnsTotal = (item.addOns || []).reduce((total, addOn) => {
+      return total + (addOn.price * (addOn.quantity || 1)); // Include add-on quantity
+    }, 0);
+  
+    const totalPrice = (item.price + addOnsTotal) * item.quantity; // Total price including add-ons
+  
+    const addOnsText = (item.addOns || [])
+      .map(
+        (addOn) =>
+          `${addOn.name} (x${addOn.quantity || 1}) - ₽${(
+            addOn.price * (addOn.quantity || 1)
+          ).toFixed(2)}`
+      )
+      .join(", ");
+  
     invoiceWindow.document.write(`
       <tr>
         <td>${item.name}</td>
-        <td>${addOnsText}</td>
-        <td class="text-right">${item.quantity}</td>
-        <td class="text-right">₽ ${(item.price).toFixed(0)}</td>
-        <td class="text-right">₽ ${addOnsTotal.toFixed(0)}</td> 
-        <td class="text-right">₽ ${totalPrice.toFixed(0)}</td>
+        <td>${addOnsText || "Нет"}</td>
+        <td>${item.quantity}</td>
+        <td>₽ ${item.price.toFixed(0)}</td>
+        <td>₽ ${addOnsTotal.toFixed(0)}</td>
+        <td>₽ ${totalPrice.toFixed(0)}</td>
       </tr>
     `);
   });
+  
 
   invoiceWindow.document.write(`
           </tbody>

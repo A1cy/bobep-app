@@ -488,139 +488,139 @@
                     </thead>
                    <tbody id="order-summary">
     <!-- Order items will be dynamically inserted here -->
-  </tbody>
-                  </table>
+          </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <form class="shop-form widget">
+                          <h4 class="widget-title">Общая Сумма</h4>
+                          <!-- Order Totals Table -->
+        <table class="table-bordered check-tbl mb-4">
+          <tbody>
+            <tr>
+              <td>Итого
+              </td>
+              <td class="product-price" id="order-subtotal"></td>
+            </tr>
+            <tr>
+              <td>Доставка</td>
+              <td class="product-price" id="order-taxes">стандартный заказ по тарифу такси</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <form class="shop-form">
+          
+              <div class="widget">
+                <h4 class="widget-title">Адрес, оплата и доставка</h4>
+                <!-- Billing Form Fields -->
+                <div class="form-group m-b20">
+                  <input
+                    name="dzFirstName"
+                    required
+                    type="text"
+                    class="form-control"
+                    placeholder="Имя Фамилия"
+                  />
+                </div>
+                <div class="form-group m-b20">
+                  <input
+                    name="dzEmail"
+                    required
+                    type="email"
+                    class="form-control"
+                    placeholder="Электронная почта"
+                  />
+                </div>
+                <div class="form-group m-b20">
+                  <input
+                    name="dzPhoneNumber"
+                    required
+                    type="text"
+                    class="form-control"
+                    placeholder="Телефон"
+                  />
+                </div>
+                <div class="form-group m-b20">
+                  <input
+                    name="dzOther[Address]"
+                    required
+                    type="text"
+                    class="form-control"
+                    placeholder="Адрес Доставки"
+                  />
                 </div>
               </div>
-              <div class="col-lg-6">
-                <form class="shop-form widget">
-                  <h4 class="widget-title">Общая Сумма</h4>
-                  <!-- Order Totals Table -->
-<table class="table-bordered check-tbl mb-4">
-  <tbody>
-    <tr>
-      <td>Итого
-      </td>
-      <td class="product-price" id="order-subtotal"></td>
-    </tr>
-    <tr>
-      <td>Доставка</td>
-      <td class="product-price" id="order-taxes">стандартный заказ по тарифу такси</td>
-    </tr>
+            
+        </form>
 
-  </tbody>
-</table>
-
-<form class="shop-form">
-   
-      <div class="widget">
-        <h4 class="widget-title">Адрес, оплата и доставка</h4>
-        <!-- Billing Form Fields -->
-        <div class="form-group m-b20">
-          <input
-            name="dzFirstName"
-            required
-            type="text"
-            class="form-control"
-            placeholder="Имя Фамилия"
-          />
-        </div>
-        <div class="form-group m-b20">
-          <input
-            name="dzEmail"
-            required
-            type="email"
-            class="form-control"
-            placeholder="Электронная почта"
-          />
-        </div>
-        <div class="form-group m-b20">
-          <input
-            name="dzPhoneNumber"
-            required
-            type="text"
-            class="form-control"
-            placeholder="Телефон"
-          />
-        </div>
-        <div class="form-group m-b20">
-          <input
-            name="dzOther[Address]"
-            required
-            type="text"
-            class="form-control"
-            placeholder="Адрес Доставки"
-          />
-        </div>
-      </div>
-    
-</form>
-
-<h4 class="widget-title">Оплата</h4>
+        <h4 class="widget-title">Оплата</h4>
 
 
-                  <div class="paymentTransfer">
-                    <p class="paymentPtag">Оплата на карту СберБанк переводом по номеру:</p>
-                  <h2 class="paymentNumber">"+7 903 073 92 35"</h2></div>
+                          <div class="paymentTransfer">
+                            <p class="paymentPtag">Оплата на карту СберБанк переводом по номеру:</p>
+                          <h2 class="paymentNumber">"+7 903 073 92 35"</h2></div>
 
-                  <!-- <div class="form-group m-b20">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Name on Card"
-                    />
+                          <!-- <div class="form-group m-b20">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Name on Card"
+                            />
+                          </div>
+                          <div class="form-group m-b20">
+                            <select class="form-select default-select">
+                              <option value="Credit Card Type">Credit Card Type</option>
+                              <option value="Another option">Another option</option>
+                              <option value="A option">A option</option>
+                              <option value="Potato">Potato</option>
+                            </select>
+                          </div>
+                          <div class="form-group m-b20">
+                            <input
+                              name="dzOther[CreditCardNumber]"
+                              type="text"
+                              class="form-control"
+                              placeholder="Credit Card Number"
+                            />
+                          </div>
+                          <div class="form-group m-b20">
+                            <input
+                              name="dzOther[CardVerificationNumber]"
+                              type="text"
+                              class="form-control"
+                              placeholder="Card Verification Number"
+                            />
+                          </div>
+                          <div class="form-group"> -->
+                            <!-- Place Order Button -->
+        <button
+          class="btn btn-gray btn-hover-2"
+          type="button"
+          id="place-order-btn"
+        >
+          Завершить Заказ
+        </button>
+
+        <!-- Invoice Print Button -->
+        <button
+          class="btn btn-primary btn-hover-2"
+          type="button"
+          id="print-invoice-btn"
+          style="display: none;"
+        >
+          Напечатать Чек
+        </button>
+
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group m-b20">
-                    <select class="form-select default-select">
-                      <option value="Credit Card Type">Credit Card Type</option>
-                      <option value="Another option">Another option</option>
-                      <option value="A option">A option</option>
-                      <option value="Potato">Potato</option>
-                    </select>
-                  </div>
-                  <div class="form-group m-b20">
-                    <input
-                      name="dzOther[CreditCardNumber]"
-                      type="text"
-                      class="form-control"
-                      placeholder="Credit Card Number"
-                    />
-                  </div>
-                  <div class="form-group m-b20">
-                    <input
-                      name="dzOther[CardVerificationNumber]"
-                      type="text"
-                      class="form-control"
-                      placeholder="Card Verification Number"
-                    />
-                  </div>
-                  <div class="form-group"> -->
-                    <!-- Place Order Button -->
-<button
-  class="btn btn-gray btn-hover-2"
-  type="button"
-  id="place-order-btn"
->
-  Завершить Заказ
-</button>
-
-<!-- Invoice Print Button -->
-<button
-  class="btn btn-primary btn-hover-2"
-  type="button"
-  id="print-invoice-btn"
-  style="display: none;"
->
-  Напечатать Чек
-</button>
-
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- cart Section -->
+                </section>
+                <!-- cart Section -->
       </div>
       <!--Footer-->
       <footer class="site-footer style-1 bg-dark" id="footer">

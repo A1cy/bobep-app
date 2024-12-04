@@ -21,13 +21,13 @@ function addToCart(item) {
   // Ensure the item has a valid quantity
   item.quantity = item.quantity || 1;
 
-  // Calculate the total price of add-ons
+  // Calculate the total price of add-ons, accounting for their quantities
   const addOnsTotalPrice = (item.addOns || []).reduce((total, addOn) => {
-    return total + (addOn.price || 0);
+    return total + (addOn.price * (addOn.quantity || 1)); // Use addOn.quantity
   }, 0);
 
   // Calculate the full price including add-ons
-  item.totalPrice = item.price + addOnsTotalPrice;
+  item.totalPrice = (item.price + addOnsTotalPrice) * item.quantity;
 
   // Check if the item is already in the cart
   const existingItem = cart.find(
@@ -50,6 +50,8 @@ function addToCart(item) {
   // Update the cart UI
   updateCartUI();
 }
+
+
 
 
 // Function to remove an item from the cart
@@ -91,12 +93,13 @@ function updateCartUI() {
   const cartItemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const cartTotal = cart.reduce((acc, item) => {
     const addOnsTotal = (item.addOns || []).reduce((total, addOn) => {
-      return total + (addOn.price || 0);
+      return total + (addOn.price * (addOn.quantity || 1)); // Include add-on quantity
     }, 0);
   
-    const itemTotal = (item.price + addOnsTotal) * item.quantity;
-    return acc + itemTotal;
+    const itemTotal = (item.price + addOnsTotal) * item.quantity; // Calculate per item total
+    return acc + itemTotal; // Sum all items
   }, 0);
+  
   
 
   // Update the item count displayed in the header
@@ -113,27 +116,39 @@ function updateCartUI() {
   // Generate the HTML for the items in the cart dropdown (in the header)
   if (cartList) {
     cartList.innerHTML = cart
-      .map(
-        (item) => `
-          <li class="cart-item">
-              <div class="media">
-                  <div class="media-left">
-                      <a href="product-detail.html?id=${item.id}">
-                          <img alt="/" class="media-object" src="${item.imageUrl}" />
-                      </a>
-                  </div>
-                  <div class="media-body">
-                      <h6 class="dz-title">
-                          <a href="product-detail.html?id=${item.id}" class="media-heading">${item.name}</a>
-                      </h6>
-                      <span class="dz-price">₽ ${item.price}</span>
-                      <span class="item-close" data-id="${item.uuid}">&times;</span>
-                  </div>
+  .map(
+    (item) => `
+      <li class="cart-item">
+          <div class="media">
+              <div class="media-left">
+                  <a href="product-detail.html?id=${item.id}">
+                      <img alt="/" class="media-object" src="${item.imageUrl}" />
+                  </a>
               </div>
-          </li>
-        `
-      )
-      .join("");
+              <div class="media-body">
+                  <h6 class="dz-title">
+                      <a href="product-detail.html?id=${item.id}" class="media-heading">${item.name}</a>
+                  </h6>
+                  <span class="dz-price">₽ ${item.price}</span>
+                  <ul class="addon-list">
+                    ${item.addOns
+                      .map(
+                        (addOn) => `
+                        <li>${addOn.name} (x${addOn.quantity}) - ₽${
+                          addOn.price * addOn.quantity
+                        }</li>
+                      `
+                      )
+                      .join("")}
+                  </ul>
+                  <span class="item-close" data-id="${item.uuid}">&times;</span>
+              </div>
+          </div>
+      </li>
+    `
+  )
+  .join("");
+
 
     // Append total price and buttons at the bottom of the cart dropdown
     cartList.insertAdjacentHTML(
@@ -152,57 +167,53 @@ function updateCartUI() {
       `
     );
   }
-
-  // Generate the HTML for the items in the cart section (sidebar)
+  function getImageUrl(imageUrl) {
+    const fallbackImageUrl = "assets/img/logo.webp";
+    return imageUrl && imageUrl.trim() ? imageUrl : fallbackImageUrl;
+  }
+  
   if (cartItemsSection) {
     cartItemsSection.innerHTML = cart
       .map(
-        (item) => `
-          <div class="cart-item style-1">
-              <div class="dz-media">
-                  <img src="${item.imageUrl}" alt="${item.name}" />
-              </div>
-              <div class="dz-content">
-                  <div class="dz-head">
-                      <h6 class="title mb-0">${item.name}</h6>
-                      <a href="javascript:void(0);" class="remove-item" data-id="${
-                        item.uuid
-                      }">
-                          <i class="fa-solid fa-xmark text-danger"></i>
-                      </a>
-                  </div>
-                  <div class="dz-body">
-                      <div class="btn-quantity style-1">
-                          <span class="input-group-btn-vertical">
-                              <button class="btn btn-default bootstrap-touchspin-down" type="button" data-id="${
-                                item.uuid
-                              }">
-                                  <i class="ti-minus"></i>
-                              </button>
-                              <input type="text" value="${
-                                item.quantity
-                              }" readonly />
-                              <button class="btn btn-default bootstrap-touchspin-up" type="button" data-id="${
-                                item.uuid
-                              }">
-                                  <i class="ti-plus"></i>
-                              </button>
-                          </span>
-                      </div>
-                      <h5 class="price text-primary mb-0">₽ ${(
-                        item.price * item.quantity
-                      ).toFixed(2)}</h5>
-                  </div>
-              </div>
-          </div>
-        `
+        (item) => {
+          const imageUrl = getImageUrl(item.imageUrl); // Use the utility function
+          return `
+            <div class="cart-item style-1">
+                <div class="dz-media">
+                    <img src="${imageUrl}" alt="${item.name}" />
+                </div>
+                <div class="dz-content">
+                    <div class="dz-head">
+                        <h6 class="title mb-0">${item.name}</h6>
+                        <a href="javascript:void(0);" class="remove-item" data-id="${item.uuid}">
+                            <i class="fa-solid fa-xmark text-danger"></i>
+                        </a>
+                    </div>
+                    <div class="dz-body">
+                        <div class="btn-quantity style-1">
+                            <span class="input-group-btn-vertical">
+                                <button class="btn btn-default bootstrap-touchspin-down" type="button" data-id="${item.uuid}">
+                                    <i class="ti-minus"></i>
+                                </button>
+                                <input type="text" value="${item.quantity}" readonly />
+                                <button class="btn btn-default bootstrap-touchspin-up" type="button" data-id="${item.uuid}">
+                                    <i class="ti-plus"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <h5 class="price text-primary mb-0">₽ ${(item.price * item.quantity).toFixed(2)}</h5>
+                    </div>
+                </div>
+            </div>
+          `;
+        }
       )
       .join("");
-
+  
     // Update total price in the sidebar
     const itemTotalElement = document.querySelector("#item-total");
     const cartTotalElement = document.querySelector("#cart-total");
-
+  
     if (itemTotalElement) {
       itemTotalElement.textContent = `₽ ${cartTotal.toFixed(2)}`;
     }
@@ -210,7 +221,8 @@ function updateCartUI() {
       cartTotalElement.textContent = `₽ ${(cartTotal + 8.5).toFixed(2)}`; // Adjust as needed
     }
   }
-
+  
+  
   // Add event listeners to remove buttons in both the header and sidebar
   document.querySelectorAll(".item-close").forEach((button) => {
     button.addEventListener("click", (e) => {
