@@ -19,7 +19,7 @@ function displayProducts(page = 1) {
 
   // Calculate the start and end indices for slicing the `filteredMenu` array.
   const start = (page - 1) * itemsPerPage;
-  const end = page * itemsPerPage;
+  const end = Math.min(start + itemsPerPage, filteredMenu.length); // Prevent out-of-range slicing
 
   // Get the items to display on the current page.
   const paginatedItems = filteredMenu.slice(start, end);
@@ -35,6 +35,7 @@ function displayProducts(page = 1) {
   // Attach event listeners to the "Add To Cart" buttons.
   handleAddToCartButtons();
 }
+
 
 // Function to update the total count of items found and display it.
 function updateTotalItemsCount(count) {
@@ -70,11 +71,17 @@ function updateTotalItemsCount(count) {
 function updatePaginationControls() {
   const totalPages = Math.ceil(filteredMenu.length / itemsPerPage); // Calculate total pages.
 
+  // Ensure there are pages to display
+  if (totalPages === 0) {
+    document.querySelector(".pagination").innerHTML = "";
+    return;
+  }
+
   // Pagination range display logic
   const rangeStart = Math.max(currentPage - 2, 1);
   const rangeEnd = Math.min(currentPage + 2, totalPages);
 
-  let paginationHtml = '';
+  let paginationHtml = "";
 
   // Previous button
   if (currentPage > 1) {
@@ -108,6 +115,7 @@ function updatePaginationControls() {
   // Insert the pagination buttons into the DOM.
   document.querySelector(".pagination").innerHTML = paginationHtml;
 }
+
 //NEW CODE OF KRIS ENDS HERE
 
 
