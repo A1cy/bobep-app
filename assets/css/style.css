@@ -33344,6 +33344,8 @@ pre {
 
 .pagination-controls {
     padding: 20px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .pagination {

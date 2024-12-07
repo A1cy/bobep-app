@@ -69,52 +69,83 @@ function updateTotalItemsCount(count) {
 
 //NEW CODE OF KRIS STARTS HERE, its works and looks good but when click '10' all buttons dissapear idk why
 function updatePaginationControls() {
-  const totalPages = Math.ceil(filteredMenu.length / itemsPerPage); // Calculate total pages.
-
-  // Ensure there are pages to display
-  if (totalPages === 0) {
-    document.querySelector(".pagination").innerHTML = "";
-    return;
+  const totalPages = Math.ceil(filteredMenu.length / itemsPerPage);
+  
+  // Validate current page
+  if (currentPage > totalPages) {
+      currentPage = totalPages;
   }
 
-  // Pagination range display logic
-  const rangeStart = Math.max(currentPage - 2, 1);
-  const rangeEnd = Math.min(currentPage + 2, totalPages);
+  // Early return if no pages
+  if (totalPages <= 0) {
+      document.querySelector(".pagination").innerHTML = "";
+      return;
+  }
 
-  let paginationHtml = "";
+  let paginationHtml = '';
 
   // Previous button
-  if (currentPage > 1) {
-    paginationHtml += `<li><a href="javascript:void(0);" class="pagination-link" data-page="${currentPage - 1}">←</a></li>`;
+  paginationHtml += `
+      <li>
+          <a href="javascript:void(0);" 
+             class="pagination-link ${currentPage === 1 ? 'disabled' : ''}" 
+             data-page="${currentPage - 1}">
+              ←
+          </a>
+      </li>`;
+
+  // Always show first page
+  if (currentPage > 3) {
+      paginationHtml += `
+          <li>
+              <a href="javascript:void(0);" class="pagination-link" data-page="1">1</a>
+          </li>
+          <li><span class="pagination-ellipsis">...</span></li>`;
   }
 
-  // First page link
-  if (rangeStart > 1) {
-    paginationHtml += `<li><a href="javascript:void(0);" class="pagination-link" data-page="1">1</a></li>`;
-    if (rangeStart > 2) paginationHtml += `<li>...</li>`; // Add ellipsis if needed
+  // Calculate visible page range
+  for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+      paginationHtml += `
+          <li class="${i === currentPage ? 'active' : ''}">
+              <a href="javascript:void(0);" class="pagination-link" data-page="${i}">${i}</a>
+          </li>`;
   }
 
-  // Page links in range
-  for (let i = rangeStart; i <= rangeEnd; i++) {
-    paginationHtml += `<li class="${i === currentPage ? "active" : ""}">
-      <a href="javascript:void(0);" class="pagination-link" data-page="${i}">${i}</a>
-    </li>`;
-  }
-
-  // Last page link
-  if (rangeEnd < totalPages) {
-    if (rangeEnd < totalPages - 1) paginationHtml += `<li>...</li>`; // Add ellipsis if needed
-    paginationHtml += `<li><a href="javascript:void(0);" class="pagination-link" data-page="${totalPages}">${totalPages}</a></li>`;
+  // Always show last page
+  if (currentPage < totalPages - 2) {
+      paginationHtml += `
+          <li><span class="pagination-ellipsis">...</span></li>
+          <li>
+              <a href="javascript:void(0);" class="pagination-link" data-page="${totalPages}">${totalPages}</a>
+          </li>`;
   }
 
   // Next button
-  if (currentPage < totalPages) {
-    paginationHtml += `<li><a href="javascript:void(0);" class="pagination-link" data-page="${currentPage + 1}">→</a></li>`;
-  }
+  paginationHtml += `
+      <li>
+          <a href="javascript:void(0);" 
+             class="pagination-link ${currentPage === totalPages ? 'disabled' : ''}" 
+             data-page="${currentPage + 1}">
+              →
+          </a>
+      </li>`;
 
-  // Insert the pagination buttons into the DOM.
+  // Update DOM
   document.querySelector(".pagination").innerHTML = paginationHtml;
 }
+
+
+// Add event delegation for pagination clicks
+document.querySelector(".pagination").addEventListener('click', (e) => {
+  const link = e.target.closest('.pagination-link');
+  if (link && !link.classList.contains('disabled')) {
+      const page = parseInt(link.dataset.page);
+      if (!isNaN(page)) {
+          displayProducts(page);
+      }
+  }
+});
+
 
 //NEW CODE OF KRIS ENDS HERE
 
