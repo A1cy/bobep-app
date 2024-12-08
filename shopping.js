@@ -219,10 +219,12 @@ function generateMenuItems(menuArray) {
               <h5 class="title">${item.name}</h5>
               <p>${item.description}</p>
               <h5 class="price">₽ ${item.price}</h5>
-              
-              <button class="btn btn-primary btn-hover-2 add-to-cart" data-id="${item.id}">
-                ДОБАВИТЬ В КОРЗИНУ
-              </button>
+                          
+              <a class="btn btn-primary btn-hover-2" href="product-detail.html?id=${item.id}">
+                ДЕТАЛИ БЛЮДА
+              </a>
+
+             
             </div>
           </div>
           </a>
