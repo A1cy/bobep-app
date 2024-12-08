@@ -186,23 +186,31 @@ function generateMenuItems(menuArray) {
     .map((item) => {
       const imageUrl = item.imageUrl || fallbackImageUrl;
 
-      // Generate add-ons as checkboxes
+      // Generate add-ons with quantity controls
       const addOnsHtml = (item.addOns || [])
         .map(
           (addOn) => `
-          <label>
-            <input type="checkbox" data-id="${addOn.id}" data-price="${addOn.price}" data-name="${addOn.name}">
-            ${addOn.name} (+₽${addOn.price})
-          </label>
+          <div class="addon-item">
+            <label class="addon-label">
+              <input type="checkbox" class="addon-checkbox" 
+                     data-id="${addOn.id}" 
+                     data-price="${addOn.price}" 
+                     data-name="${addOn.name}">
+              ${addOn.name} (+₽${addOn.price})
+            </label>
+            <div class="addon-quantity" style="display: none;">
+              <button class="addon-qty-btn minus" type="button">-</button>
+              <input type="number" class="addon-qty-input" value="1" min="1" max="10">
+              <button class="addon-qty-btn plus" type="button">+</button>
+            </div>
+          </div>
         `
         )
         .join("");
 
       return `
         <li class="card-container col-xl-4 col-md-6 m-b30">
-                       <a  href="product-detail.html?id=${item.id}">
-
-        <div class="dz-img-box style-7">
+          <div class="dz-img-box style-7">
             <div class="dz-media">
               <img src="${imageUrl}" alt="${item.name}" />
             </div>
@@ -210,14 +218,14 @@ function generateMenuItems(menuArray) {
               <h5 class="title">${item.name}</h5>
               <p>${item.description}</p>
               <h5 class="price">₽ ${item.price}</h5>
-            
-              <a class="btn btn-primary btn-hover-2" href="product-detail.html?id=${item.id}">
-                ДЕТАЛИ БЛЮДА
-              </a>
+              <div class="addons-container">
+                ${addOnsHtml}
+              </div>
+              <button class="btn btn-primary btn-hover-2 add-to-cart" data-id="${item.id}">
+                ДОБАВИТЬ В КОРЗИНУ
+              </button>
             </div>
           </div>
-                        </a>
-
         </li>
       `;
     })
@@ -259,19 +267,50 @@ function generateCategoryFilters(menuArray) {
 
 // Function to attach event listeners to the "Add To Cart" buttons.
 function handleAddToCartButtons() {
-  document.querySelectorAll(".btn-hover-2").forEach((button) => {
+  document.querySelectorAll(".add-to-cart").forEach((button) => {
+    // Handle addon checkbox changes
+    const container = button.closest('.dz-content');
+    
+    container.querySelectorAll('.addon-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', (e) => {
+        const quantityDiv = e.target.closest('.addon-item').querySelector('.addon-quantity');
+        quantityDiv.style.display = e.target.checked ? 'flex' : 'none';
+      });
+    });
+
+    // Handle addon quantity buttons
+    container.querySelectorAll('.addon-qty-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const input = e.target.closest('.addon-quantity').querySelector('.addon-qty-input');
+        const currentValue = parseInt(input.value);
+        
+        if (e.target.classList.contains('plus')) {
+          input.value = Math.min(currentValue + 1, 10);
+        } else {
+          input.value = Math.max(currentValue - 1, 1);
+        }
+      });
+    });
+
+    // Handle add to cart button
     button.addEventListener("click", (e) => {
       const itemId = parseInt(e.target.dataset.id);
       const item = filteredMenu.find((menuItem) => menuItem.id === itemId);
 
       if (item) {
+        // Get only the selected add-ons with their quantities
         const selectedAddOns = Array.from(
-          e.target.closest(".dz-content").querySelectorAll("input[type='checkbox']:checked")
-        ).map((checkbox) => ({
-          id: checkbox.dataset.id,
-          name: checkbox.dataset.name,
-          price: parseInt(checkbox.dataset.price, 10),
-        }));
+          e.target.closest('.dz-content').querySelectorAll('.addon-checkbox:checked')
+        ).map(checkbox => {
+          const addonItem = checkbox.closest('.addon-item');
+          const quantity = parseInt(addonItem.querySelector('.addon-qty-input').value);
+          return {
+            id: checkbox.dataset.id,
+            name: checkbox.dataset.name,
+            price: parseInt(checkbox.dataset.price),
+            quantity: quantity
+          };
+        });
 
         addToCart({ ...item, addOns: selectedAddOns });
       }

@@ -33549,3 +33549,35 @@ width: 60%;
 .price-label {
   margin-right: 30px; /* Space between the price and checkbox */
 }
+
+.addon-item {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addon-quantity {
+  display: none;
+  align-items: center;
+  gap: 5px;
+}
+
+.addon-qty-input {
+  width: 40px;
+  text-align: center;
+}
+
+.addon-qty-btn {
+  padding: 2px 8px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.addon-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 0;
+}

@@ -16,32 +16,53 @@ function loadCartFromLocalStorage() {
     cart = JSON.parse(cartData);
   }
 }
-
 function addToCart(item) {
   // Ensure the item has a valid quantity
   item.quantity = item.quantity || 1;
 
-  // Calculate the total price of add-ons, accounting for their quantities
-  const addOnsTotalPrice = (item.addOns || []).reduce((total, addOn) => {
-    return total + (addOn.price * (addOn.quantity || 1)); // Use addOn.quantity
-  }, 0);
+  // Create a new cart item without add-ons first
+  let cartItem = {
+    ...item,
+    addOns: [], // Initialize with empty add-ons array
+    totalPrice: item.price * item.quantity,
+    uuid: uuidv4()
+  };
 
-  // Calculate the full price including add-ons
-  item.totalPrice = (item.price + addOnsTotalPrice) * item.quantity;
+  // Only process add-ons if they exist and are actually selected
+  if (item.addOns && Array.isArray(item.addOns) && item.addOns.length > 0) {
+    // Filter out any add-ons that might have empty or invalid properties
+    cartItem.addOns = item.addOns.filter(addon => 
+      addon && 
+      addon.id && 
+      addon.name && 
+      addon.price && 
+      addon.quantity && 
+      addon.quantity > 0
+    );
 
-  // Check if the item is already in the cart
-  const existingItem = cart.find(
-    (cartItem) =>
-      cartItem.id === item.id &&
-      JSON.stringify(cartItem.addOns) === JSON.stringify(item.addOns)
+    // Recalculate total price including valid add-ons
+    if (cartItem.addOns.length > 0) {
+      const addOnsTotalPrice = cartItem.addOns.reduce((total, addOn) => 
+        total + (addOn.price * addOn.quantity), 0);
+      cartItem.totalPrice = (item.price + addOnsTotalPrice) * item.quantity;
+    }
+  }
+
+  // Check if the item is already in the cart with the same add-ons
+  const existingItem = cart.find(existing => 
+    existing.id === item.id && 
+    JSON.stringify(existing.addOns) === JSON.stringify(cartItem.addOns)
   );
 
   if (existingItem) {
-    // If the item is already in the cart, increase its quantity
+    // Update existing item
     existingItem.quantity += item.quantity;
+    existingItem.totalPrice = (existingItem.price * existingItem.quantity) + 
+      (existingItem.addOns.reduce((total, addOn) => 
+        total + (addOn.price * addOn.quantity), 0) * existingItem.quantity);
   } else {
-    // If the item is not in the cart, add it with a unique UUID
-    cart.push({ ...item, uuid: uuidv4() });
+    // Add new item to cart
+    cart.push(cartItem);
   }
 
   // Save the updated cart to localStorage
@@ -130,17 +151,20 @@ function updateCartUI() {
                       <a href="product-detail.html?id=${item.id}" class="media-heading">${item.name}</a>
                   </h6>
                   <span class="dz-price">₽ ${item.price}</span>
-                  <ul class="addon-list">
-                    ${item.addOns
-                      .map(
-                        (addOn) => `
-                        <li>${addOn.name} (x${addOn.quantity}) - ₽${
-                          addOn.price * addOn.quantity
-                        }</li>
-                      `
-                      )
-                      .join("")}
-                  </ul>
+                // In the cart list HTML generation
+<ul class="addon-list">
+  ${(item.addOns && item.addOns.length > 0) 
+    ? item.addOns
+        .map(
+          (addOn) => `
+          <li>${addOn.name} (x${addOn.quantity || 1}) - ₽${
+            addOn.price * (addOn.quantity || 1)
+          }</li>
+        `
+        )
+        .join("")
+    : ''}
+</ul>
                   <span class="item-close" data-id="${item.uuid}">&times;</span>
               </div>
           </div>
