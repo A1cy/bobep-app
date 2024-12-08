@@ -210,7 +210,10 @@ function generateMenuItems(menuArray) {
 
       return `
         <li class="card-container col-xl-4 col-md-6 m-b30">
-          <div class="dz-img-box style-7">
+                               <a  href="product-detail.html?id=${item.id}">
+
+  
+        <div class="dz-img-box style-7">
             <div class="dz-media">
               <img src="${imageUrl}" alt="${item.name}" />
             </div>
@@ -218,14 +221,13 @@ function generateMenuItems(menuArray) {
               <h5 class="title">${item.name}</h5>
               <p>${item.description}</p>
               <h5 class="price">₽ ${item.price}</h5>
-              <div class="addons-container">
-                ${addOnsHtml}
-              </div>
+              
               <button class="btn btn-primary btn-hover-2 add-to-cart" data-id="${item.id}">
                 ДОБАВИТЬ В КОРЗИНУ
               </button>
             </div>
           </div>
+          </a>
         </li>
       `;
     })
