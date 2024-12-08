@@ -42,11 +42,18 @@ if (productId) {
 function renderProductDetails(product) {
   // Update product image
   const productImage = document.getElementById("product-image");
-  if (productImage) {
+  const productImageContainer = productImage ? productImage.parentElement : null;
+  
+  if (productImage && product.imageUrl) {
     productImage.src = product.imageUrl;
     productImage.alt = product.name;
+  } else if (productImage && productImageContainer) {
+    // Remove the image element
+    productImage.remove();
+    // Apply margin-top to the container of the image
+    productImageContainer.style.marginTop = "-30px";
   }
-
+  
   // Update product name
   const productName = document.getElementById("product-name");
   if (productName) {
@@ -81,31 +88,35 @@ function renderProductDetails(product) {
 
   // Render Add Ons
   const addOnsContainer = document.getElementById("add-ons-list");
+  const fallbackImageUrl = "your-fallback-image-url-here"; // Replace with your fallback image URL
+  
   if (addOnsContainer && product.addOns) {
     addOnsContainer.innerHTML = product.addOns
-      .map(
-        (addOn) => `
-      <li>
-        <div class="mini-modal">
-          <div class="dz-media">
-            <img src="${addOn.imageUrl}" alt="${addOn.name}">
-          </div>
-          <div class="dz-content">
-            <p class="title">${addOn.name}</p>
-            <div class="form-check search-content">
-              <input class="form-check-input add-on-checkbox" type="checkbox" value="${addOn.id}" data-price="${addOn.price}" data-name="${addOn.name}" data-image="${addOn.imageUrl}">
-              <label for="add-on-${addOn.id}">₽${addOn.price}</label>
+      .map((addOn) => {
+        const imageUrl = addOn.imageUrl || fallbackImageUrl; // Use fallback image if imageUrl is missing
+        return `
+          <li>
+            <div class="mini-modal">
+              <div class="dz-media">
+                <img src="${imageUrl}" alt="${addOn.name}">
+              </div>
+              <div class="dz-content">
+                <p class="title">${addOn.name}</p>
+                <div class="form-check search-content">
+                  <label for="add-on-${addOn.id}" class="price-label">₽${addOn.price}</label>
+                  <input class="form-check-input add-on-checkbox" type="checkbox" value="${addOn.id}" data-price="${addOn.price}" data-name="${addOn.name}" data-image="${imageUrl}">
+                </div>
+                <div class="btn-quantity style-1 m-t5">
+                  <input id="addon-quantity-${addOn.id}" type="number" value="1" min="1" disabled>
+                </div>
+              </div>
             </div>
-            <div class="btn-quantity style-1 m-t5">
-              <input id="addon-quantity-${addOn.id}" type="number" value="1" min="1" disabled>
-            </div>
-          </div>
-        </div>
-      </li>
-    `
-      )
+          </li>
+        `;
+      })
       .join("");
   }
+  
   
   // Add event listener to enable/disable quantity input when checkbox is toggled
   document.querySelectorAll(".add-on-checkbox").forEach((checkbox) => {
