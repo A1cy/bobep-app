@@ -151,7 +151,6 @@ function updateCartUI() {
                       <a href="product-detail.html?id=${item.id}" class="media-heading">${item.name}</a>
                   </h6>
                   <span class="dz-price">₽ ${item.price}</span>
-                // In the cart list HTML generation
 <ul class="addon-list">
   ${(item.addOns && item.addOns.length > 0) 
     ? item.addOns
