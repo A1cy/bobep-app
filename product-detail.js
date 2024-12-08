@@ -88,7 +88,7 @@ function renderProductDetails(product) {
 
   // Render Add Ons
   const addOnsContainer = document.getElementById("add-ons-list");
-  const fallbackImageUrl = "your-fallback-image-url-here"; // Replace with your fallback image URL
+  const fallbackImageUrl = "assets/images/faviconMain/androidchrome192.png"; // Replace with your fallback image URL
   
   if (addOnsContainer && product.addOns) {
     addOnsContainer.innerHTML = product.addOns

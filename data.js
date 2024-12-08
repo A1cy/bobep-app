@@ -1383,7 +1383,7 @@ export const menuArray = [
     name: "СЕТ “НОВЫЙ МАЛЫЙ”",
     description: "ЗАПЕЧЁННЫЙ МИДИЯ, ЗАПЕЧЁННЫЙ ЦЫПОЧКА, ЗАПЕЧЁННЫЙ ТАДЖ-МАХАЛ, ЗАПЕЧЁННЫЙ ЧЁТКИЙ ПЕРЕЦ. НАБОР: 3",
     price: 1540,
-    imageUrl: "imagesDecember2024/setNew.jpg",
+    imageUrl: "imagesDecember2024/setNewSmall.jpg",
     gramms: "900",
     additionalInformation: [
       { label: "Вес", value: "900 грамм" },
